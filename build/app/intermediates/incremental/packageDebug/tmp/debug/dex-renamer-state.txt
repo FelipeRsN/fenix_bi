@@ -1,4 +1,4 @@
-#Tue Feb 25 22:47:20 BRT 2020
-base.0=/media/felipersn/Projects/NewPointer/fenix_bi/fenix_bi/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+#Mon Mar 02 02:57:47 BRT 2020
+base.0=F\:\\NewPointer\\fenix_bi\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
