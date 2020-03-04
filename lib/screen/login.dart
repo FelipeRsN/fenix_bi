@@ -1,4 +1,5 @@
 import 'package:fenix_bi/res/colors.dart';
+import 'package:fenix_bi/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
-  final _STEP_1 = 1;
-  final _STEP_2 = 2;
+  static const _STEP_1 = 1;
+  static const _STEP_2 = 2;
 
   var _currentStep;
   var _passwordVisible = false;
@@ -28,9 +29,6 @@ class _LoginScreenState extends State<LoginScreen>
 
   AnimationController _step2Animation;
   Animation<double> _step2fadeInFadeOut;
-
-  AnimationController _rotationAnimation;
-  Animation<double> _rotation;
 
   final Widget _logo = SvgPicture.asset("assets/images/fenix_bi_logo.svg",
       semanticsLabel: 'FenixBI Logo');
@@ -57,23 +55,12 @@ class _LoginScreenState extends State<LoginScreen>
     );
     _step2fadeInFadeOut =
         Tween<double>(begin: 0.0, end: 1.0).animate(_step2Animation);
-
-    _rotationAnimation = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 2000),
-    );
-
-    _rotation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_rotationAnimation);
   }
 
   @override
   void dispose() {
     _step1Animation.dispose();
     _step2Animation.dispose();
-    _rotationAnimation.dispose();
     super.dispose();
   }
 
@@ -92,6 +79,8 @@ class _LoginScreenState extends State<LoginScreen>
         } else {
           SystemChannels.platform.invokeMethod('SystemNavigator.pop');
         }
+
+        return Future.value(false);
       },
       child: Scaffold(
         key: _scaffoldKey,
@@ -127,30 +116,21 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _buildLoginStepsContainer() {
-    return AnimatedBuilder(
-      animation: _rotationAnimation,
-      builder: (context, child) {
-        return Transform(
-          transform: Matrix4.rotationY(_rotation.value * pi),
-          alignment: Alignment.center,
-          child: Container(
-            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-            width: 247,
-            height: 284,
-            child: Card(
-              color: Colors.white,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: _startAnimationAndDetectStep(),
-              ),
-            ),
-          ),
-        );
-      },
+    return Container(
+      margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+      width: 247,
+      height: 284,
+      child: Card(
+        color: Colors.white,
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: _startAnimationAndDetectStep(),
+        ),
+      ),
     );
   }
 
@@ -162,14 +142,14 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _startAnimationAndDetectStep() {
+
+     _step1Animation.reverse();
+     _step2Animation.reverse();
+
     if (_currentStep == _STEP_1) {
-      _step2Animation.reverse().whenComplete(() {
         _step1Animation.forward();
-      });
     } else {
-      _step1Animation.reverse().whenComplete(() {
         _step2Animation.forward();
-      });
     }
 
     return (_currentStep == 1)
@@ -412,8 +392,7 @@ class _LoginScreenState extends State<LoginScreen>
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               onPressed: () {
-                _rotationAnimation.reset();
-                _rotationAnimation.forward();
+                  Navigator.pushReplacementNamed(context, AppRoutes.route_filter);
               },
             ),
           ),
