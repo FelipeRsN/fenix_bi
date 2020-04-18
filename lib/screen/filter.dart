@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:fenix_bi/res/colors.dart';
 import 'package:fenix_bi/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -13,6 +16,32 @@ class _FilterScreenState extends State<FilterScreen> {
 
   var _filterTypeSelected;
   var _selectedAllStores;
+
+  var _startDateSelected = false;
+  var _startDate = DateTime.now();
+
+  var _finishDateSelected = false;
+  var _finishDate = DateTime.now();
+
+  var _storeList = [
+    'Albania',
+    'Andorra',
+    'Armenia',
+    'Austria',
+    'Azerbaijan',
+    'Belarus',
+    'Belgium',
+    'Bosnia and Herzegovina',
+    'Bulgaria',
+    'Croatia',
+    'Cyprus',
+    'Czech Republic',
+    'Denmark',
+    'Estonia',
+    'Finland',
+    'France',
+    'Georgia'
+  ];
 
   @override
   void initState() {
@@ -170,11 +199,13 @@ class _FilterScreenState extends State<FilterScreen> {
                       color: Colors.black),
                 ),
                 Container(
-                  width: 90,
+                  width: 100,
                   height: 30,
                   margin: EdgeInsets.only(left: 8),
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _selectStartDate(context);
+                    },
                     color: AppColors.colorTextField,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -182,7 +213,9 @@ class _FilterScreenState extends State<FilterScreen> {
                       side: BorderSide(color: AppColors.colorPrimary, width: 1),
                     ),
                     child: Text(
-                      'Data inicio',
+                      _startDateSelected
+                          ? '${_startDate.day.toString().padLeft(2, '0')}/${_startDate.month.toString().padLeft(2, '0')}/${_startDate.year}'
+                          : 'Data inicio',
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -201,11 +234,13 @@ class _FilterScreenState extends State<FilterScreen> {
                   ),
                 ),
                 Container(
-                  width: 90,
+                  width: 100,
                   height: 30,
                   margin: EdgeInsets.only(left: 8),
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _selectFinishDate(context);
+                    },
                     color: AppColors.colorTextField,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -213,7 +248,9 @@ class _FilterScreenState extends State<FilterScreen> {
                       side: BorderSide(color: AppColors.colorPrimary, width: 1),
                     ),
                     child: Text(
-                      'Data fim',
+                      _finishDateSelected
+                          ? '${_finishDate.day.toString().padLeft(2, '0')}/${_finishDate.month.toString().padLeft(2, '0')}/${_finishDate.year}'
+                          : 'Data fim',
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -307,7 +344,12 @@ class _FilterScreenState extends State<FilterScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: ListView(),
+              child: ListView.builder(
+                itemCount: _storeList.length,
+                itemBuilder: (context, index) {
+                  return _buildStoreItem(_storeList[index]);
+                },
+              ),
             ),
           ),
         ),
@@ -332,5 +374,128 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
       ],
     );
+  }
+
+  Widget _buildStoreItem(String item) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        height: 40,
+        width: double.infinity,
+        child: Row(
+          children: <Widget>[
+            Container(
+              height: 24,
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  unselectedWidgetColor: AppColors.colorPrimary,
+                ),
+                child: Checkbox(
+                  value: _selectedAllStores,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _selectedAllStores = true;
+                    });
+                  },
+                  checkColor: Colors.white, // color of tick Mark
+                  activeColor: AppColors.colorPrimary,
+                ),
+              ),
+            ),
+            Text(
+              item,
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<Null> _selectStartDate(BuildContext context) async {
+    if (!Platform.isAndroid) {
+      final DateTime picked = await showDatePicker(
+          context: context,
+          initialDate: _startDate,
+          firstDate: DateTime(2019),
+          lastDate: DateTime.now());
+      if (picked != null && picked != _startDate)
+        setState(() {
+          _startDateSelected = true;
+          _startDate = picked;
+        });
+    } else {
+      DatePicker.showDatePicker(
+        context,
+        showTitleActions: true,
+        minTime: DateTime(2019),
+        maxTime: DateTime.now(),
+        theme: DatePickerTheme(
+          itemStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          doneStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onConfirm: (date) {
+          setState(() {
+            _startDateSelected = true;
+            _startDate = date;
+          });
+        },
+        currentTime: _startDate,
+        locale: LocaleType.pt,
+      );
+    }
+  }
+
+  Future<Null> _selectFinishDate(BuildContext context) async {
+    if (Platform.isAndroid) {
+      final DateTime picked = await showDatePicker(
+          context: context,
+          initialDate: _finishDate,
+          firstDate: DateTime(2019),
+          lastDate: DateTime.now());
+      if (picked != null && picked != _finishDate)
+        setState(() {
+          _finishDateSelected = true;
+          _finishDate = picked;
+        });
+    } else {
+      DatePicker.showDatePicker(
+        context,
+        showTitleActions: true,
+        minTime: DateTime(2019),
+        maxTime: DateTime.now(),
+        theme: DatePickerTheme(
+          itemStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          doneStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onConfirm: (date) {
+          setState(() {
+            _finishDateSelected = true;
+            _finishDate = date;
+          });
+        },
+        currentTime: _finishDate,
+        locale: LocaleType.pt,
+      );
+    }
   }
 }
