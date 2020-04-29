@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "F:\\NewPointer\\fenix_bi\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt-rPT\\values-pt-rPT.xml",
+            "outputFile": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/values-pt-rPT/values-pt-rPT.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

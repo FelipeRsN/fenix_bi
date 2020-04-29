@@ -1,3 +1,8 @@
+import 'dart:developer';
+
+import 'package:fenix_bi/data/connection/connection.dart';
+import 'package:fenix_bi/data/model/filterData.dart';
+import 'package:fenix_bi/data/model/loginRequest.dart';
 import 'package:fenix_bi/res/colors.dart';
 import 'package:fenix_bi/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:math';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -22,6 +26,14 @@ class _LoginScreenState extends State<LoginScreen>
   var _currentVersion = "";
   final _focusPassword = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  var _typedName = "";
+  var _typedPassword = "";
+
+  //connection
+  var _isLoading = false;
+  var _filterData = FilterData();
+
 
   //animation variables
   AnimationController _step1Animation;
@@ -66,7 +78,21 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      //showProgressDialog();
+    } else {
+      //dismissProgressBar();
+    }
+
     return _buildBaseLoginScreen();
+  }
+
+  void showProgressDialog() async{
+    //await pr.show();
+  }
+
+  void dismissProgressBar() async{
+    //await pr.hide();
   }
 
   Widget _buildBaseLoginScreen() {
@@ -85,31 +111,36 @@ class _LoginScreenState extends State<LoginScreen>
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: AppColors.colorPrimary,
-        body: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                _buildLogoContainer(),
-                _buildLoginStepsContainer(),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(16.0),
-                  child: Text(
-                    _currentVersion,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  _buildLogoContainer(),
+                  _buildLoginStepsContainer(),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(16.0),
+                    child: Text(
+                      _currentVersion,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -142,14 +173,13 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _startAnimationAndDetectStep() {
-
-     _step1Animation.reverse();
-     _step2Animation.reverse();
+    _step1Animation.reverse();
+    _step2Animation.reverse();
 
     if (_currentStep == _STEP_1) {
-        _step1Animation.forward();
+      _step1Animation.forward();
     } else {
-        _step2Animation.forward();
+      _step2Animation.forward();
     }
 
     return (_currentStep == 1)
@@ -186,6 +216,9 @@ class _LoginScreenState extends State<LoginScreen>
               width: double.infinity,
               height: 36,
               child: TextFormField(
+                onChanged: (value) {
+                  _typedName = value;
+                },
                 style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -216,6 +249,9 @@ class _LoginScreenState extends State<LoginScreen>
               width: double.infinity,
               margin: EdgeInsets.only(top: 4, bottom: 4),
               child: TextFormField(
+                onChanged: (value) {
+                  _typedPassword = value;
+                },
                 style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -269,9 +305,19 @@ class _LoginScreenState extends State<LoginScreen>
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
-                  setState(() {
-                    _currentStep = _STEP_2;
-                  });
+                  if (_typedName.isEmpty || _typedPassword.isEmpty) {
+                    _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        content:
+                            Text("Preencha o usuário e a senha para continuar"),
+                      ),
+                    );
+                  } else {
+                    setState(() {
+                      _isLoading = true;
+                      checkLoginCredentials();
+                    });
+                  }
                 },
               ),
             ),
@@ -303,6 +349,64 @@ class _LoginScreenState extends State<LoginScreen>
         ),
       ),
     );
+  }
+
+  void checkLoginCredentials() async {
+    try{
+    var response = await ConnectionUtils.loginAccount(LoginRequest(
+      usuario: _typedName.toUpperCase().trim(),
+      senha: _typedPassword,
+    ));
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    //check api response
+    if (response.result != null && response.result.isNotEmpty) {
+
+      //find something
+      var result = response.result[0][0];
+      if(result.sucess == null || result.sucess != false){
+
+        //result ok. login
+        _filterData.connectedName = _typedName.toUpperCase().trim();
+        _filterData.storeList = response.result[0];
+        
+        setState(() {
+          _currentStep = _STEP_2;
+        });
+      }else{
+        //error, show message
+        var reason = result.apiErrorReason;
+        if(reason == null || reason.isEmpty) reason = "Problema ao efetuar login. Credenciais não encontradas";
+
+        _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        content:
+                            Text(reason),
+                      ),
+                    );
+      }
+    } else {
+      //empty response. Connection error maybe
+        _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        content:
+                            Text("Problema ao conectar-se. Verifique sua internet e tente novamente."),
+                      ),
+                    );
+    }
+    }catch(error){
+      log(error.toString());
+      //error processing information
+        _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        content:
+                            Text("Tivemos um problema ao conectar-se. Verifique sua internet e tente novamente."),
+                      ),
+                    );
+    }
   }
 
   Widget _buildSecondLoginScreen() {
@@ -392,7 +496,7 @@ class _LoginScreenState extends State<LoginScreen>
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               onPressed: () {
-                  Navigator.pushReplacementNamed(context, AppRoutes.route_filter);
+                Navigator.pushReplacementNamed(context, AppRoutes.route_filter, arguments: _filterData);
               },
             ),
           ),

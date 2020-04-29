@@ -1,22 +1,22 @@
 [
     {
-        "merged": "F:\\NewPointer\\fenix_bi\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\layout\\notification_template_part_chronometer.xml"
+        "merged": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout/notification_template_part_chronometer.xml"
     },
     {
-        "merged": "F:\\NewPointer\\fenix_bi\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\layout\\notification_template_icon_group.xml"
+        "merged": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout/notification_action_tombstone.xml"
     },
     {
-        "merged": "F:\\NewPointer\\fenix_bi\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
-        "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\layout\\notification_template_part_time.xml"
+        "merged": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout/notification_template_icon_group.xml"
     },
     {
-        "merged": "F:\\NewPointer\\fenix_bi\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\layout\\notification_action_tombstone.xml"
+        "merged": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "F:\\NewPointer\\fenix_bi\\build\\url_launcher\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",
-        "source": "C:\\Users\\Felipe Silveira\\.gradle\\caches\\transforms-2\\files-2.1\\0a271e99b6771ad4a84318244d532fb7\\core-1.0.0\\res\\layout\\notification_action.xml"
+        "merged": "/Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0a271e99b6771ad4a84318244d532fb7/core-1.0.0/res/layout/notification_action.xml"
     }
 ]
