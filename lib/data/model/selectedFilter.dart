@@ -6,13 +6,31 @@ class SelectedFilter {
   DateTime startDate;
   DateTime finishDate;
   List<Store> selectedStores;
+  String selectedStoresFormattedToString;
+  String database;
 
-  SelectedFilter(this.filterType, this.startDate, this.finishDate, this.selectedStores);
-  
-  SelectedFilter.createEmpty(){
+  SelectedFilter(this.filterType, this.startDate, this.finishDate,
+      this.selectedStores, this.database);
+
+  SelectedFilter.createEmpty() {
     filterType = FilterType.MONTHLY;
     startDate = DateTime.now();
     finishDate = DateTime.now();
     selectedStores = List();
+    database = "";
+    selectedStoresFormattedToString = "";
+  }
+
+  String convertStoreListToString() {
+    var allStoresString = "";
+    for (var store in selectedStores) {
+      if (allStoresString.isEmpty)
+        allStoresString = "'" + store.storeId + "'";
+      else
+        allStoresString = allStoresString + ",'" + store.storeId + "'";
+    }
+    selectedStoresFormattedToString = allStoresString;
+
+    return selectedStoresFormattedToString;
   }
 }

@@ -7,4 +7,7 @@ class AppColors{
   static const colorHintText = Color(0x4d000000);
   static const colorTextField = Color(0xffE5EDF3);
   static const colorBackground = Color(0xffFAFAFA);
+  static const colorTextPositive = Color(0xff988924);
+  static const colorTextNegative = Color(0xffFF0000);
+  static const colorTextNeutral = Color(0xff3100FF);
 }

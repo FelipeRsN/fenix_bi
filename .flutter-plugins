@@ -1,5 +1,11 @@
 # This is a generated file; do not edit or check into version control.
-package_info=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.0+14/
-url_launcher=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.2/
-url_launcher_macos=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+4/
-url_launcher_web=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+1/
+firebase_analytics=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-5.0.11/
+firebase_core=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.4+3/
+firebase_core_web=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+package_info=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.0+17/
+shared_preferences=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.7+1/
+shared_preferences_macos=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+8/
+shared_preferences_web=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+5/
+url_launcher=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.5/
+url_launcher_macos=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+5/
+url_launcher_web=/Users/felipersilveira/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+4/

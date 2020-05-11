@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "831782582429",
+    "firebase_url": "https://newpointer-fenix-bi.firebaseio.com",
+    "project_id": "newpointer-fenix-bi",
+    "storage_bucket": "newpointer-fenix-bi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831782582429:android:c6f37920cd932f2615fc74",
+        "android_client_info": {
+          "package_name": "br.com.newpointer.fenix.bi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831782582429-u6qnp07f38bn9gs9gnig1au58gfvled0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkFGcW0r-z2LP7TR5Z4Z4_c9aLsV4QQtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831782582429-u6qnp07f38bn9gs9gnig1au58gfvled0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "831782582429-ql0rfjv76o569cd5tldaul8q1r2ktccu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.newpointer.fenix.bi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
