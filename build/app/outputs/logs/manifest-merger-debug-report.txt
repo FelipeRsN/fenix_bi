@@ -8,6 +8,8 @@ MERGED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/
 MERGED from [:firebase_core] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core_web] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_core_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:package_info] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:local_auth] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/local_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:shared_preferences] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_web] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -16,6 +18,7 @@ MERGED from [:shared_preferences_macos] /Users/felipersilveira/Projects/NewPoint
 MERGED from [:url_launcher_macos] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_web] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3c4448b5028ac9ff85bbb45459ec94ad/firebase-analytics-17.2.2/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:17:1-33:12
 MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:17:1-55:12
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f83116d0690dd01225dbd5f211dc5390/play-services-measurement-api-17.2.2/AndroidManifest.xml:17:1-36:12
 MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/550e17f70922370ee44c7bcf79f216b1/play-services-measurement-sdk-17.2.2/AndroidManifest.xml:17:1-25:12
@@ -31,12 +34,17 @@ MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/felipersi
 MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/baee640588bb8a3b9b8f7b36671a5bd1/firebase-measurement-connector-18.0.0/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/c7894140b5607a090c84ce9276cb5617/play-services-ads-identifier-17.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.appcompat:appcompat:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b4e75e6298b1efee02a7f127e90e254b/appcompat-1.1.0-rc01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/060f468e386cfbc25705019572fb0019/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/36ae60d5a1057d3586e27bf7e087e458/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/54b2baa8dc1fb3176996ba88a9da449a/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/13602f427367f15f24d9627a6bc9015e/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5470dbc8ecc031d10bba4292e131a08f/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/75e4bcb00f9b3fbadff9f4a8a4e547d1/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/464a1d1148b9a00ad3242083e5b5d9b2/appcompat-resources-1.1.0-rc01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3abef9e7f8e97ab2efac5474c5265fc0/vectordrawable-animated-1.1.0-rc01/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/d047c7dbf570221fa933ab90bfed2a02/vectordrawable-1.1.0-rc01/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e6856c7cff7219f18cbbcc5d8d7cecec/core-1.1.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/462b4186e71e4e9b66f60d1399e2e72b/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/508304cfcf060b1f70d98273a7bd5f6f/savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
@@ -49,9 +57,11 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/felipersilveir
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5b70c6bacbe0b5f1893bb54d57880fc0/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/801d0191510f82d154ff21874ed354bd/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b41b915fe6c6f59a4214ab21100663a2/print-1.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0385ea4a29775a0876d6ec5a94b0e32c/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f26caf765685a82db0d03fbb2e1328d8/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:1:1-8:12
 	package
 		ADDED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/main/AndroidManifest.xml:2:5-41
 		INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/main/AndroidManifest.xml
@@ -76,6 +86,8 @@ MERGED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/fen
 MERGED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-17:19
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3c4448b5028ac9ff85bbb45459ec94ad/firebase-analytics-17.2.2/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3c4448b5028ac9ff85bbb45459ec94ad/firebase-analytics-17.2.2/AndroidManifest.xml:7:5-20
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:27:5-31:19
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:27:5-31:19
 MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:28:5-53:19
 MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:28:5-53:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f83116d0690dd01225dbd5f211dc5390/play-services-measurement-api-17.2.2/AndroidManifest.xml:26:5-34:19
@@ -156,6 +168,10 @@ MERGED from [:firebase_core_web] /Users/felipersilveira/Projects/NewPointer/feni
 MERGED from [:firebase_core_web] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_core_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:package_info] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:package_info] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/package_info/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:local_auth] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/local_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:local_auth] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/local_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -172,6 +188,8 @@ MERGED from [:url_launcher_web] /Users/felipersilveira/Projects/NewPointer/fenix
 MERGED from [:url_launcher_web] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/url_launcher_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3c4448b5028ac9ff85bbb45459ec94ad/firebase-analytics-17.2.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3c4448b5028ac9ff85bbb45459ec94ad/firebase-analytics-17.2.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-api:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f83116d0690dd01225dbd5f211dc5390/play-services-measurement-api-17.2.2/AndroidManifest.xml:20:5-44
@@ -202,18 +220,28 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/
 MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/c7894140b5607a090c84ce9276cb5617/play-services-ads-identifier-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b4e75e6298b1efee02a7f127e90e254b/appcompat-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b4e75e6298b1efee02a7f127e90e254b/appcompat-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/060f468e386cfbc25705019572fb0019/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/060f468e386cfbc25705019572fb0019/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/36ae60d5a1057d3586e27bf7e087e458/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/36ae60d5a1057d3586e27bf7e087e458/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/54b2baa8dc1fb3176996ba88a9da449a/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/54b2baa8dc1fb3176996ba88a9da449a/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/13602f427367f15f24d9627a6bc9015e/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/13602f427367f15f24d9627a6bc9015e/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/49387243cdeac79c7b0792df04542d66/activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5470dbc8ecc031d10bba4292e131a08f/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5470dbc8ecc031d10bba4292e131a08f/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/75e4bcb00f9b3fbadff9f4a8a4e547d1/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/75e4bcb00f9b3fbadff9f4a8a4e547d1/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/464a1d1148b9a00ad3242083e5b5d9b2/appcompat-resources-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/464a1d1148b9a00ad3242083e5b5d9b2/appcompat-resources-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3abef9e7f8e97ab2efac5474c5265fc0/vectordrawable-animated-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/3abef9e7f8e97ab2efac5474c5265fc0/vectordrawable-animated-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/d047c7dbf570221fa933ab90bfed2a02/vectordrawable-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0-rc01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/d047c7dbf570221fa933ab90bfed2a02/vectordrawable-1.1.0-rc01/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e6856c7cff7219f18cbbcc5d8d7cecec/core-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.1.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e6856c7cff7219f18cbbcc5d8d7cecec/core-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/462b4186e71e4e9b66f60d1399e2e72b/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
@@ -238,6 +266,10 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/801d0191510f82d154ff21874ed354bd/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b41b915fe6c6f59a4214ab21100663a2/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/b41b915fe6c6f59a4214ab21100663a2/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0385ea4a29775a0876d6ec5a94b0e32c/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/0385ea4a29775a0876d6ec5a94b0e32c/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f26caf765685a82db0d03fbb2e1328d8/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f26caf765685a82db0d03fbb2e1328d8/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml
 INJECTED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
@@ -262,6 +294,12 @@ MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/felipersilveira/.gr
 MERGED from [com.google.firebase:firebase-iid:20.0.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/c266841fe422bd2db428e3a7e45cb9af/firebase-iid-20.0.2/AndroidManifest.xml:23:5-67
 	android:name
 		ADDED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:6:22-64
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:7:5-73
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:25:5-74
+MERGED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:25:5-74
+	android:name
+		ADDED from /Users/felipersilveira/Projects/NewPointer/fenix_bi/android/app/src/debug/AndroidManifest.xml:7:22-71
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:firebase_core] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-16:19
@@ -328,6 +366,16 @@ ADDED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/feni
 		ADDED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-82
 	android:name
 		ADDED from [:firebase_analytics] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-127
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:24:5-72
+	android:name
+		ADDED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:24:22-69
+activity#androidx.biometric.DeviceCredentialHandlerActivity
+ADDED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:28:9-30:67
+	android:theme
+		ADDED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:30:13-64
+	android:name
+		ADDED from [androidx.biometric:biometric:1.0.0-beta01] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/23983d026626bbdb96fd37954f97573c/biometric-1.0.0-beta01/AndroidManifest.xml:29:13-78
 uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
 ADDED from [com.google.android.gms:play-services-measurement:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/e824d8b293ca29102adc00325092ffad/play-services-measurement-17.2.2/AndroidManifest.xml:26:5-110
 MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/82af0b94fbf70689f7757f9693d9d9e7/play-services-measurement-impl-17.2.2/AndroidManifest.xml:26:5-110

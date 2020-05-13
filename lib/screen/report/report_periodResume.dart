@@ -8,7 +8,6 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
 
 class PeriodResumeReport extends StatelessWidget {
-
   final FechamentoCaixaResponse reportData;
   PeriodResumeReport({Key key, @required this.reportData}) : super(key: key);
 
@@ -152,6 +151,28 @@ class PeriodResumeReport extends StatelessWidget {
               '${item.nMFantasia}: ${NumberFormat.currency(locale: "pt_BR", symbol: "R\$").format(item.totGeral)}'),
     ];
 
+    var height = 400.0;
+    switch (reportData.provideNumberOfStores()) {
+      case 1:
+        height = 115.0;
+        break;
+      case 2:
+        height = 170.0;
+        break;
+      case 3:
+        height = 220.0;
+        break;
+      case 4:
+        height = 280.0;
+        break;
+      case 5:
+        height = 350.0;
+        break;
+      default:
+        height = 450.0;
+        break;
+    }
+
     return Padding(
       padding: EdgeInsets.fromLTRB(8, 0, 8, 40),
       child: Card(
@@ -175,7 +196,7 @@ class PeriodResumeReport extends StatelessWidget {
               Container(
                 padding: EdgeInsets.fromLTRB(0, 0, 12, 16),
                 width: double.infinity,
-                height: 320,
+                height: height,
                 child: charts.BarChart(
                   series,
                   animate: true,
@@ -191,5 +212,4 @@ class PeriodResumeReport extends StatelessWidget {
       ),
     );
   }
-
 }

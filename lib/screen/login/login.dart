@@ -1,17 +1,21 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:fenix_bi/data/connection/connection.dart';
 import 'package:fenix_bi/data/model/filterData.dart';
 import 'package:fenix_bi/data/model/loginRequest.dart';
+import 'package:fenix_bi/data/model/selectedFilter.dart';
 import 'package:fenix_bi/res/colors.dart';
 import 'package:fenix_bi/utils/routes.dart';
 import 'package:fenix_bi/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:local_auth/local_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -31,9 +35,13 @@ class _LoginScreenState extends State<LoginScreen>
 
   var _pinSentTo = "";
   var _verificationPin = "";
+  var _biometricAvailable = false;
+
+  var _hasBiometricValidationWithThisLogin = false;
 
   final _focusPassword = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final LocalAuthentication _localAuthentication = LocalAuthentication();
 
   var _typedName = "";
   var _typedPassword = "";
@@ -59,6 +67,8 @@ class _LoginScreenState extends State<LoginScreen>
     _currentStep = _STEP_1;
     _initAnimation();
     _retrieveCurrentVersion();
+    _checkLastLoginTyped();
+    _retrieveBiometricConfiguration();
   }
 
   void _initAnimation() {
@@ -87,8 +97,14 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     pr = Utils.provideProgressDialog(context, "Efetuando login...");
-    _checkLastLoginTyped();
     return _buildBaseLoginScreen();
+  }
+
+  _retrieveBiometricConfiguration() async {
+    var isAvailable = await _isBiometricAvailable();
+    setState(() {
+      _biometricAvailable = isAvailable;
+    });
   }
 
   _checkLastLoginTyped() async {
@@ -96,6 +112,8 @@ class _LoginScreenState extends State<LoginScreen>
     if (lastLogin != null && lastLogin.isNotEmpty) {
       if (userNameController.text.isEmpty) {
         _typedName = lastLogin;
+        _hasBiometricValidationWithThisLogin =
+            await Utils.hasBiometricDecisionWithThisLogin(_typedName) ?? false;
         userNameController.text = lastLogin;
       }
     }
@@ -224,8 +242,14 @@ class _LoginScreenState extends State<LoginScreen>
               height: 36,
               child: TextFormField(
                 controller: userNameController,
-                onChanged: (value) {
+                onChanged: (value) async {
                   _typedName = value;
+                  var newValue =
+                      await Utils.hasBiometricDecisionWithThisLogin(value) ??
+                          false;
+                  setState(() {
+                    _hasBiometricValidationWithThisLogin = newValue;
+                  });
                 },
                 style: TextStyle(
                     fontSize: 12,
@@ -304,32 +328,69 @@ class _LoginScreenState extends State<LoginScreen>
               width: double.infinity,
               margin: EdgeInsets.only(top: 12, bottom: 14),
               height: 36,
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: AppColors.colorPrimary,
-                elevation: 0,
-                highlightElevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  "Requisitar acesso",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  if (_typedName.isEmpty || _typedPassword.isEmpty) {
-                    _scaffoldKey.currentState.hideCurrentSnackBar();
-                    _scaffoldKey.currentState.showSnackBar(
-                      SnackBar(
-                        content:
-                            Text("Preencha o usuário e a senha para continuar"),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          right: _hasBiometricValidationWithThisLogin &&
+                                  _biometricAvailable
+                              ? 8
+                              : 0),
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        color: AppColors.colorPrimary,
+                        elevation: 0,
+                        highlightElevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          "Requisitar acesso",
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          if (_typedName.isEmpty || _typedPassword.isEmpty) {
+                            _scaffoldKey.currentState.hideCurrentSnackBar();
+                            _scaffoldKey.currentState.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    "Preencha o usuário e a senha para continuar"),
+                              ),
+                            );
+                          } else {
+                            FocusScope.of(context).unfocus();
+                            _checkLoginCredentials();
+                          }
+                        },
                       ),
-                    );
-                  } else {
-                    FocusScope.of(context).unfocus();
-                    _checkLoginCredentials();
-                  }
-                },
+                    ),
+                  ),
+                  _hasBiometricValidationWithThisLogin && _biometricAvailable
+                      ? Container(
+                          width: 36,
+                          child: RawMaterialButton(
+                            elevation: 0,
+                            highlightElevation: 0,
+                            fillColor: AppColors.colorPrimary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                alignment: Alignment.center,
+                                child: Icon(Icons.fingerprint,
+                                    color: Colors.white)),
+                            onPressed: () async {
+                              _requestBiometricData();
+                            },
+                          ),
+                        )
+                      : Container(),
+                ],
               ),
             ),
             Container(
@@ -361,6 +422,23 @@ class _LoginScreenState extends State<LoginScreen>
         ),
       ),
     );
+  }
+
+  _requestBiometricData() async {
+    var auth = await _useLocalAuth();
+    if (auth != null && auth == true) {
+      _typedPassword = await Utils.getSavedBiometricPassword(_typedName);
+      _checkLoginCredentials();
+    } else {
+      log("Digital nao reconhecida");
+      _scaffoldKey.currentState.hideCurrentSnackBar();
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text(
+              "Problema ao validar sua identificação, tente novamente ou acesse utilizando sua senha."),
+        ),
+      );
+    }
   }
 
   _checkLoginCredentials() async {
@@ -662,10 +740,139 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   _saveDataAndContinue() async {
-    //await Utils.saveLoginInformationInSharedPreferences(_filterData).then((_) {
-    Navigator.pushReplacementNamed(context, AppRoutes.route_filter,
-        arguments: _filterData);
-    //});
+    //await Utils.removeBiometricLoginDecision();
+    var hasBiometricData =
+        await Utils.hasBiometricDecisionWithThisLogin(_typedName);
+    if (hasBiometricData == null) {
+      //no biometric data, request dialog
+      log("sem acesso, pedir");
+      await _showBiometricDialog();
+    }
+
+    log("ja efetuou as validacoes, continuar");
+
+    var _selectedFilter = SelectedFilter.createEmpty();
+
+    _selectedFilter.selectedStores.clear();
+    for (var item in _filterData.storeList) {
+      if (item.isSelected) {
+        _selectedFilter.selectedStores.add(item);
+      }
+    }
+    var now = DateTime.now();
+    _selectedFilter.startDate = DateTime(now.year, now.month, 1);
+    _selectedFilter.finishDate = DateTime.now();
+    _selectedFilter.database = _filterData.connectedDatabase;
+    _selectedFilter.connectedName = _filterData.connectedName;
+
+    Navigator.pushReplacementNamed(context, AppRoutes.route_report,
+        arguments: _selectedFilter);
+  }
+
+  _showBiometricDialog() async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Platform.isAndroid
+              ? AlertDialog(
+                  title: Text("Acesso com biometria"),
+                  content: Text(
+                      "Gostaria de permitir o acesso a este login utilizando biométrico?\nNo próximo login a opção de login com biometria estará habilitada"),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12))),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text(
+                        "NEGAR",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      onPressed: () async {
+                        await Utils.saveBiometricLoginDecision(
+                            _typedName, _typedPassword, false);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "PERMITIR",
+                        style: TextStyle(
+                          color: AppColors.colorPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () async {
+                        await Utils.saveBiometricLoginDecision(
+                            _typedName, _typedPassword, true);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "PERGUNTAR DEPOIS",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () {
+                        log("continuar sem salvar");
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                )
+              : CupertinoAlertDialog(
+                  title: Text("Acesso com biometria"),
+                  content: Text(
+                      "Gostaria de permitir o acesso a este login utilizando biométrico?\nNo próximo login a opção de login com biometria estará habilitada"),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text(
+                        "NEGAR",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      onPressed: () async {
+                        await Utils.saveBiometricLoginDecision(
+                            _typedName, _typedPassword, false);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "PERMITIR",
+                        style: TextStyle(
+                          color: AppColors.colorPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () async {
+                        await Utils.saveBiometricLoginDecision(
+                            _typedName, _typedPassword, true);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    FlatButton(
+                      child: Text(
+                        "PERGUNTAR DEPOIS",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: () {
+                        log("continuar sem salvar");
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+        });
   }
 
   void _retrieveCurrentVersion() {
@@ -675,5 +882,66 @@ class _LoginScreenState extends State<LoginScreen>
         _currentVersion = "V. " + version;
       });
     });
+  }
+
+  // To check if any type of biometric authentication
+  // hardware is available.
+  Future<bool> _isBiometricAvailable() async {
+    bool isAvailable = false;
+
+    try {
+      isAvailable = await _localAuthentication.canCheckBiometrics;
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    isAvailable
+        ? log('Biometric is available!')
+        : log('Biometric is unavailable.');
+
+    return isAvailable;
+  }
+
+  // To retrieve the list of biometric types
+  // (if available).
+  _getListOfBiometricTypes() async {
+    List<BiometricType> listOfBiometrics;
+    try {
+      listOfBiometrics = await _localAuthentication.getAvailableBiometrics();
+    } on PlatformException catch (e) {
+      print(e);
+    }
+
+    if (!mounted) return;
+
+    print(listOfBiometrics);
+  }
+
+  // Process of authentication user using
+  // biometrics.
+  Future<bool> _authenticateUser() async {
+    bool isAuthenticated = false;
+    try {
+      isAuthenticated = await _localAuthentication.authenticateWithBiometrics(
+        localizedReason: "Identifique-se para continuar",
+        useErrorDialogs: true,
+        stickyAuth: true,
+      );
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    isAuthenticated
+        ? log('User is authenticated!')
+        : log('User is not authenticated.');
+
+    return isAuthenticated;
+  }
+
+  Future<bool> _useLocalAuth() async {
+    if (await _isBiometricAvailable()) {
+      await _getListOfBiometricTypes();
+      var auth = await _authenticateUser();
+      return auth;
+    }
   }
 }

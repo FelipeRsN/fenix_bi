@@ -7,6 +7,7 @@ class SelectedFilter {
   DateTime finishDate;
   List<Store> selectedStores;
   String selectedStoresFormattedToString;
+  String connectedName;
   String database;
 
   SelectedFilter(this.filterType, this.startDate, this.finishDate,
@@ -24,10 +25,12 @@ class SelectedFilter {
   String convertStoreListToString() {
     var allStoresString = "";
     for (var store in selectedStores) {
-      if (allStoresString.isEmpty)
-        allStoresString = "'" + store.storeId + "'";
-      else
-        allStoresString = allStoresString + ",'" + store.storeId + "'";
+      if (store.isSelected) {
+        if (allStoresString.isEmpty)
+          allStoresString = "'" + store.storeId + "'";
+        else
+          allStoresString = allStoresString + ",'" + store.storeId + "'";
+      }
     }
     selectedStoresFormattedToString = allStoresString;
 

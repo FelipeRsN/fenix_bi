@@ -98,6 +98,11 @@ class FechamentoCaixaResponse {
             double.parse(item.vLCartaoCredito.replaceAll(",", "."));
         storeItem.totRepique =
             double.parse(item.vLRepique.replaceAll(",", "."));
+        storeItem.totalClients = int.parse(item.tTClientes);
+        storeItem.totTicketCancelation =
+            double.parse(item.vLTtCancel.replaceAll(",", "."));
+        storeItem.totAveragePerClient =
+            storeItem.totGeral / storeItem.totalClients;
 
         if (currentItem == null || currentDay != item.dTAbertura) {
           currentItem = SalesPerDay();
@@ -107,8 +112,7 @@ class FechamentoCaixaResponse {
         }
 
         currentItem.storeList.add(storeItem);
-        if(endOfTheLastCycle) salesPerDayList.add(currentItem);
-
+        if (endOfTheLastCycle) salesPerDayList.add(currentItem);
       } catch (error) {
         log(error.toString());
       }
@@ -179,6 +183,11 @@ class FechamentoCaixaResponse {
           currentItem.totCartaoCredito =
               provideCartaoCreditoByStore(item.nMFantasia);
           currentItem.totRepique = provideRepiqueByStore(item.nMFantasia);
+          currentItem.totalClients = provideTotalClientsByStore(item.nMFantasia);
+          currentItem.totTicketCancelation =
+              provideCancelamentosByStore(item.nMFantasia);
+          currentItem.totAveragePerClient =
+              currentItem.totGeral / currentItem.totalClients;
           chartDataList.add(currentItem);
         }
       } catch (error) {
@@ -416,6 +425,42 @@ class FechamentoCaixaResponse {
       try {
         if (item.nMFantasia == store) {
           var totDouble = double.parse(item.vLRepique.replaceAll(",", "."));
+          totalLiquido = totalLiquido + totDouble;
+        }
+      } catch (error) {
+        log(error);
+      }
+    }
+
+    return totalLiquido;
+  }
+
+  double provideCancelamentosByStore(String store) {
+    var list = result[0];
+    var totalLiquido = 0.0;
+
+    for (var item in list) {
+      try {
+        if (item.nMFantasia == store) {
+          var totDouble = double.parse(item.vLTtCancel.replaceAll(",", "."));
+          totalLiquido = totalLiquido + totDouble;
+        }
+      } catch (error) {
+        log(error);
+      }
+    }
+
+    return totalLiquido;
+  }
+
+  int provideTotalClientsByStore(String store) {
+    var list = result[0];
+    var totalLiquido = 0;
+
+    for (var item in list) {
+      try {
+        if (item.nMFantasia == store) {
+          var totDouble = int.parse(item.tTClientes);
           totalLiquido = totalLiquido + totDouble;
         }
       } catch (error) {

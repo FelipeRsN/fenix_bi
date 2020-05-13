@@ -32,6 +32,11 @@ class ReportStoreInformation {
   double totCartaoCredito = 0.0;
   String vLRepique;
   double totRepique = 0.0;
+  String tTClientes;
+  int totalClients = 0;
+  String vLTtCancel;
+  double totTicketCancelation = 0.0;
+  double totAveragePerClient = 0.0;
   int cDEmpresa;
   String apiErrorReason = "";
   bool sucess = true;
@@ -56,6 +61,8 @@ class ReportStoreInformation {
     this.vLAcrescimo,
     this.vLCartaoCredito,
     this.vLRepique,
+    this.tTClientes,
+    this.vLTtCancel,
     this.cDEmpresa,
     this.apiErrorReason,
     this.sucess
@@ -87,6 +94,8 @@ class ReportStoreInformation {
         vLAcrescimo: json["vL_ACRESCIMO"],
         vLCartaoCredito: json["vL_CARTAO_CREDITO"],
         vLRepique: json["vL_REPIQUE"],
+        tTClientes: json["tT_CLIENTE"],
+        vLTtCancel: json["vL_TT_CANCEL"],
         cDEmpresa: json["cD_EMPRESA"],
         apiErrorReason: json["motivo"],
         sucess: json["sucess"],
@@ -109,6 +118,8 @@ class ReportStoreInformation {
         "vL_ACRESCIMO": vLAcrescimo,
         "vL_CARTAO_CREDITO": vLCartaoCredito,
         "vL_REPIQUE": vLRepique,
+        "tT_CLIENTE": tTClientes,
+        "vL_TT_CANCEL": vLTtCancel,
         "cD_EMPRESA": cDEmpresa,
         "motivo": apiErrorReason,
         "sucess": sucess,

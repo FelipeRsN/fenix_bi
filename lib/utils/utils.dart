@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:fenix_bi/data/model/filterData.dart';
+import 'package:fenix_bi/data/model/selectedFilter.dart';
 import 'package:fenix_bi/data/model/store.dart';
 import 'package:fenix_bi/res/colors.dart';
 import 'package:flutter/material.dart';
@@ -40,53 +41,6 @@ class Utils {
     return pr;
   }
 
-  static saveLoginInformationInSharedPreferences(FilterData information) async {
-    log("saving user data");
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        SHARED_PREFERENCES_STOREOWNER_NAME, information.connectedName);
-    await prefs.setString(
-        SHARED_PREFERENCES_STOREOWNER_DATABASE, information.connectedDatabase);
-
-    var listOfStoreConvertedToString = List<String>();
-    for (var store in information.storeList) {
-      listOfStoreConvertedToString.add(storeToJson(store));
-    }
-
-    await prefs.setStringList(
-        SHARED_PREFERENCES_STOREOWNER_STORE_LIST, listOfStoreConvertedToString);
-    log("data stored.");
-  }
-
-  static Future<bool> hasUserConnected() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var hasItemStored = prefs.containsKey(SHARED_PREFERENCES_STOREOWNER_NAME);
-    return hasItemStored;
-  }
-
-  static Future<FilterData> getConnectedUserInformation() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var data = FilterData();
-    data.connectedName = prefs.getString(SHARED_PREFERENCES_STOREOWNER_NAME);
-    data.connectedDatabase =
-        prefs.getString(SHARED_PREFERENCES_STOREOWNER_DATABASE);
-    var storeList =
-        prefs.getStringList(SHARED_PREFERENCES_STOREOWNER_STORE_LIST);
-
-    var listOfStores = List<Store>();
-    for (var item in storeList) {
-      listOfStores.add(storeFromJson(item));
-    }
-
-    data.storeList = listOfStores;
-    return data;
-  }
-
-  static removeConnectedUser() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-  }
-
   static saveLastLoginTyped(String login) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(SHARED_PREFERENCES_LAST_LOGIN_USED);
@@ -98,6 +52,77 @@ class Utils {
     var login = prefs.getString(SHARED_PREFERENCES_LAST_LOGIN_USED);
     return login;
   }
+
+  static saveBiometricLoginDecision(String selectedLogin,
+      String selectedPassword, bool enableBiometricLogin) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String completeValue =
+        "$selectedLogin|$selectedPassword|$enableBiometricLogin";
+    log("Saving $completeValue");
+    await prefs.remove(SHARED_PREFERENCES_USE_BIOMETRIC_LOGIN);
+    await prefs.setString(
+        SHARED_PREFERENCES_USE_BIOMETRIC_LOGIN, completeValue);
+  }
+
+  static removeBiometricLoginDecision() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    log("removing data");
+    await prefs.remove(SHARED_PREFERENCES_USE_BIOMETRIC_LOGIN);
+  }
+
+  static Future<String> getSavedBiometricPassword(String login) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var value = prefs.getString(SHARED_PREFERENCES_USE_BIOMETRIC_LOGIN);
+    if (value != null && value.isNotEmpty) {
+      log("achou um dado: $value");
+      var split = value.split("|");
+      var savedLogin = split[0];
+      var password = split[1];
+      log("Login salvo: $login");
+      var sameLogin = login == savedLogin;
+      if (sameLogin) {
+        return password;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  static Future<bool> hasBiometricDecisionWithThisLogin(String login) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var value = prefs.getString(SHARED_PREFERENCES_USE_BIOMETRIC_LOGIN);
+    if (value != null && value.isNotEmpty) {
+      log("achou um dado: $value");
+      var split = value.split("|");
+      var savedLogin = split[0];
+      var decision = split[2];
+      log("Login salvo: $login");
+      var sameLogin = login == savedLogin;
+      if (sameLogin) {
+        if (decision == "true") {
+          log("decision true");
+          return true;
+        } else {
+          log("decision false");
+          return false;
+        }
+      } else {
+        log("n é mesmo login");
+        return null;
+      }
+    } else {
+      log("n achou nada");
+      return null;
+    }
+  }
+
+  // static Future<bool> getBiometricLoginDecision() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   var login = prefs.getString(SHARED_PREFERENCES_LAST_LOGIN_USED);
+  //   return login;
+  // }
 
   static String capsWord(String value) {
     return value.toLowerCase().split(' ').map((word) {

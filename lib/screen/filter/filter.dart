@@ -1,9 +1,4 @@
-import 'dart:developer';
 import 'dart:io';
-
-import 'package:fenix_bi/data/connection/connection.dart';
-import 'package:fenix_bi/data/model/fechamentoCaixaRequest.dart';
-import 'package:fenix_bi/data/model/filterData.dart';
 import 'package:fenix_bi/data/model/selectedFilter.dart';
 import 'package:fenix_bi/data/model/store.dart';
 import 'package:fenix_bi/res/colors.dart';
@@ -13,8 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:intl/intl.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -23,167 +16,137 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   var _selectedAllStores = true;
-  var _startDateSelected = false;
-  var _finishDateSelected = false;
 
-  var _selectedFilter = SelectedFilter.createEmpty();
-
-  FilterData _filterData;
+  var _filterData = SelectedFilter.createEmpty();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  ProgressDialog pr;
-
-  @override
-  void initState() {
-    super.initState();
-    if (_startDateSelected == false) {
-      var now = DateTime.now();
-      setState(() {
-        _startDateSelected = true;
-        _selectedFilter.startDate = DateTime(now.year, now.month, 1);
-      });
-    }
-    if (_finishDateSelected == false) {
-      setState(() {
-        _finishDateSelected = true;
-        _selectedFilter.finishDate = DateTime.now();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    pr = Utils.provideProgressDialog(context, "Carregando dados...");
     _filterData = ModalRoute.of(context).settings.arguments;
+    _selectedAllStores = _checkIfAllStoresIsSelected();
     return _buildBaseScreen();
   }
 
   Widget _buildBaseScreen() {
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: AppColors.colorPrimary,
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+        _moveToReport();
+        return true;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: AppColors.colorPrimary,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        title: Text(
-          "Bem vindo, ${_filterData.connectedName}!",
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        actions: <Widget>[
-          InkWell(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Platform.isAndroid
-                      ? AlertDialog(
-                          title: Text("Tem certeza que deseja sair?"),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          actions: <Widget>[
-                            FlatButton(
-                              child: Text(
-                                "CANCELAR",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
+        appBar: AppBar(
+          backgroundColor: AppColors.colorPrimary,
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Text(
+            "Filtro",
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          actions: <Widget>[
+            InkWell(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Platform.isAndroid
+                        ? AlertDialog(
+                            title: Text("Tem certeza que deseja sair?"),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12))),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text(
+                                  "CANCELAR",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                 ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               ),
-                              onPressed: () {
-                                _clearStorageAndRestartApp();
-                              },
-                            ),
-                            FlatButton(
-                              child: Text(
-                                "SAIR",
-                                style: TextStyle(
-                                  color: AppColors.colorPrimary,
-                                  fontWeight: FontWeight.bold,
+                              FlatButton(
+                                child: Text(
+                                  "SAIR",
+                                  style: TextStyle(
+                                    color: AppColors.colorPrimary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
+                                onPressed: () {
+                                  _clearStorageAndRestartApp();
+                                },
                               ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, AppRoutes.route_login);
-                              },
-                            ),
-                          ],
-                        )
-                      : CupertinoAlertDialog(
-                          title: Text("Tem certeza que deseja sair?"),
-                          actions: <Widget>[
-                            FlatButton(
-                              child: Text(
-                                "CANCELAR",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
+                            ],
+                          )
+                        : CupertinoAlertDialog(
+                            title: Text("Tem certeza que deseja sair?"),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text(
+                                  "CANCELAR",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                 ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               ),
-                              onPressed: () {
-                                _clearStorageAndRestartApp();
-                              },
-                            ),
-                            FlatButton(
-                              child: Text(
-                                "SAIR",
-                                style: TextStyle(
-                                  color: AppColors.colorPrimary,
-                                  fontWeight: FontWeight.bold,
+                              FlatButton(
+                                child: Text(
+                                  "SAIR",
+                                  style: TextStyle(
+                                    color: AppColors.colorPrimary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
+                                onPressed: () {
+                                  _clearStorageAndRestartApp();
+                                },
                               ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, AppRoutes.route_login);
-                              },
-                            ),
-                          ],
-                        );
-                },
-              );
-            },
-            child: SizedBox(
-              height: double.infinity,
-              width: 80,
-              child: Container(
-                padding: EdgeInsets.only(right: 24),
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Sair',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white),
+                            ],
+                          );
+                  },
+                );
+              },
+              child: SizedBox(
+                height: double.infinity,
+                width: 80,
+                child: Container(
+                  padding: EdgeInsets.only(right: 24),
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Sair',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+        body: _buildScreenBody(),
       ),
-      body: _buildScreenBody(),
     );
   }
 
   _clearStorageAndRestartApp() async {
-    //await Utils.removeConnectedUser().then((_) {
     Phoenix.rebirth(context);
-    //});
   }
 
   Widget _buildScreenBody() {
     return Column(
       children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 16),
-          alignment: Alignment.center,
-          child: Text(
-            'Filtro',
-            style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ),
         // Container(
         //   margin: EdgeInsets.only(left: 16, right: 16, top: 24),
         //   child: Row(
@@ -289,9 +252,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       side: BorderSide(color: AppColors.colorPrimary, width: 1),
                     ),
                     child: Text(
-                      _startDateSelected
-                          ? '${_selectedFilter.startDate.day.toString().padLeft(2, '0')}/${_selectedFilter.startDate.month.toString().padLeft(2, '0')}/${_selectedFilter.startDate.year}'
-                          : 'Data inicio',
+                      '${_filterData.startDate.day.toString().padLeft(2, '0')}/${_filterData.startDate.month.toString().padLeft(2, '0')}/${_filterData.startDate.year}',
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -324,9 +285,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       side: BorderSide(color: AppColors.colorPrimary, width: 1),
                     ),
                     child: Text(
-                      _finishDateSelected
-                          ? '${_selectedFilter.finishDate.day.toString().padLeft(2, '0')}/${_selectedFilter.finishDate.month.toString().padLeft(2, '0')}/${_selectedFilter.finishDate.year}'
-                          : 'Data fim',
+                      '${_filterData.finishDate.day.toString().padLeft(2, '0')}/${_filterData.finishDate.month.toString().padLeft(2, '0')}/${_filterData.finishDate.year}',
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -358,7 +317,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     height: 24,
                     margin: EdgeInsets.only(left: 12),
                     child: Checkbox(
-                      value: _selectedAllStores,
+                      value: _checkIfAllStoresIsSelected(),
                       onChanged: (bool value) {
                         setState(() {
                           _selectedAllStores = !_selectedAllStores;
@@ -426,10 +385,11 @@ class _FilterScreenState extends State<FilterScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListView.builder(
-                itemCount: _filterData.storeList.length,
+                itemCount: _filterData.selectedStores.length,
                 padding: EdgeInsets.only(top: 8, bottom: 8),
                 itemBuilder: (context, index) {
-                  return _buildStoreItem(_filterData.storeList[index], index);
+                  return _buildStoreItem(
+                      _filterData.selectedStores[index], index);
                 },
               ),
             ),
@@ -443,7 +403,7 @@ class _FilterScreenState extends State<FilterScreen> {
             onPressed: !_checkIfCanContinue()
                 ? null
                 : () {
-                    _loadReportsAndContinue();
+                    _moveToReport();
                   },
             color: Colors.white,
             disabledColor: Colors.white54,
@@ -463,114 +423,17 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  _loadReportsAndContinue() async {
-    try {
-      //start dialog
-      await pr.show();
-
-      _selectedFilter.selectedStores.clear();
-      for (var item in _filterData.storeList) {
-        if (item.isSelected) {
-          _selectedFilter.selectedStores.add(item);
-        }
-      }
-
-      _selectedFilter.database = _filterData.connectedDatabase;
-
-      var response = await ConnectionUtils.provideFechamentoCaixa(
-          FechamentoCaixaRequest(
-              database: _selectedFilter.database,
-              datainicial:
-                  DateFormat('dd/MM/yyyy').format(_selectedFilter.startDate),
-              datafinal:
-                  DateFormat('dd/MM/yyyy').format(_selectedFilter.finishDate),
-              lojas: _selectedFilter.convertStoreListToString()));
-
-      //check api response
-      if (response.result != null && response.result.isNotEmpty) {
-        //find something
-        var result = response.result[0][0];
-        if (result.sucess == null || result.sucess != false) {
-          //result ok. login
-          log("voltou o retorno");
-
-          response.filterStartDate = _selectedFilter.startDate;
-          response.filterEndDate = _selectedFilter.finishDate;
-          response.numberOfStoreSelected =
-              _selectedFilter.selectedStores.length;
-
-          //close Dialog
-          pr.hide();
-
-          Navigator.pushNamed(context, AppRoutes.route_report,
-              arguments: response);
-        } else {
-          //error, show message
-          var reason = result.apiErrorReason;
-          if (reason == null || reason.isEmpty)
-            reason = "Problema ao efetuar login. Credenciais não encontradas";
-
-          //close Dialog
-          pr.hide();
-
-          _scaffoldKey.currentState.hideCurrentSnackBar();
-          _scaffoldKey.currentState.showSnackBar(
-            SnackBar(
-              content: Text(reason),
-            ),
-          );
-        }
-      } else {
-        var reason =
-            "Problema ao conectar-se. Verifique sua internet e tente novamente.";
-
-        ///close Dialog
-        pr.hide();
-
-        _scaffoldKey.currentState.hideCurrentSnackBar();
-        _scaffoldKey.currentState.showSnackBar(
-          SnackBar(
-            content: Text(reason),
-          ),
-        );
-      }
-    } catch (error) {
-      log(error.toString());
-
-      //close Dialog
-      Navigator.pop(context);
-
-      //error processing information
-      _scaffoldKey.currentState.hideCurrentSnackBar();
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(
-              "Tivemos um problema ao conectar-se. Verifique sua internet e tente novamente."),
-        ),
-      );
-    }
-  }
-
-  void _populateStoreListAndContinueToReport() {
-    _selectedFilter.selectedStores.clear();
-    for (var item in _filterData.storeList) {
-      if (item.isSelected) {
-        _selectedFilter.selectedStores.add(item);
-      }
-    }
-
-    _selectedFilter.database = _filterData.connectedDatabase;
-
-    Navigator.pushNamed(context, AppRoutes.route_report,
-        arguments: _selectedFilter);
+  void _moveToReport() {
+    Navigator.pushReplacementNamed(context, AppRoutes.route_report,
+        arguments: _filterData);
   }
 
   Widget _buildStoreItem(Store item, int position) {
     return InkWell(
       onTap: () {
         setState(() {
-          _filterData.storeList[position].isSelected =
-              !_filterData.storeList[position].isSelected;
+          _filterData.selectedStores[position].isSelected =
+              !_filterData.selectedStores[position].isSelected;
           _selectedAllStores = _checkIfAllStoresIsSelected();
         });
       },
@@ -589,7 +452,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   value: item.isSelected,
                   onChanged: (bool value) {
                     setState(() {
-                      _filterData.storeList[position].isSelected = value;
+                      _filterData.selectedStores[position].isSelected = value;
                       _selectedAllStores = _checkIfAllStoresIsSelected();
                     });
                   },
@@ -599,9 +462,9 @@ class _FilterScreenState extends State<FilterScreen> {
               ),
             ),
             Text(
-              item.storeName,
+              Utils.capsWord(item.storeName),
               style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: Colors.black),
             ),
@@ -613,7 +476,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
   bool _checkIfAllStoresIsSelected() {
     var _allStoresSelected = true;
-    for (var item in _filterData.storeList) {
+    for (var item in _filterData.selectedStores) {
       if (!item.isSelected) {
         _allStoresSelected = false;
         break;
@@ -624,19 +487,17 @@ class _FilterScreenState extends State<FilterScreen> {
 
   bool _checkIfCanContinue() {
     var _canContinue = false;
-    if (_startDateSelected && _finishDateSelected) {
-      for (var item in _filterData.storeList) {
-        if (item.isSelected) {
-          _canContinue = true;
-          break;
-        }
+    for (var item in _filterData.selectedStores) {
+      if (item.isSelected) {
+        _canContinue = true;
+        break;
       }
     }
     return _canContinue;
   }
 
   void _toggleAllStoresSelection(bool isSelected) {
-    for (var item in _filterData.storeList) {
+    for (var item in _filterData.selectedStores) {
       item.isSelected = isSelected;
     }
   }
@@ -649,7 +510,7 @@ class _FilterScreenState extends State<FilterScreen> {
         helpText: 'Data início',
         fieldLabelText: 'Digite a data',
         fieldHintText: 'dd/mm/aaaa',
-        initialDate: _selectedFilter.startDate,
+        initialDate: _filterData.startDate,
         firstDate: DateTime(2019),
         lastDate: DateTime.now(),
       );
@@ -659,8 +520,7 @@ class _FilterScreenState extends State<FilterScreen> {
       }
 
       setState(() {
-        _startDateSelected = true;
-        _selectedFilter.startDate = picked;
+        _filterData.startDate = picked;
       });
     } else {
       DatePicker.showDatePicker(
@@ -682,12 +542,11 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
         onConfirm: (date) {
           setState(() {
-            _startDateSelected = true;
-            _selectedFilter.startDate = date;
+            _filterData.startDate = date;
             _checkIfCanContinue();
           });
         },
-        currentTime: _selectedFilter.startDate,
+        currentTime: _filterData.startDate,
         locale: LocaleType.pt,
       );
     }
@@ -701,8 +560,8 @@ class _FilterScreenState extends State<FilterScreen> {
         helpText: 'Data fim',
         fieldLabelText: 'Digite a data',
         fieldHintText: 'dd/mm/aaaa',
-        initialDate: _selectedFilter.finishDate,
-        firstDate: DateTime(2019),
+        initialDate: _filterData.finishDate,
+        firstDate: _filterData.startDate,
         lastDate: DateTime.now(),
       );
 
@@ -711,14 +570,13 @@ class _FilterScreenState extends State<FilterScreen> {
       }
 
       setState(() {
-        _finishDateSelected = true;
-        _selectedFilter.finishDate = picked;
+        _filterData.finishDate = picked;
       });
     } else {
       DatePicker.showDatePicker(
         context,
         showTitleActions: true,
-        minTime: DateTime(2019),
+        minTime: _filterData.startDate,
         maxTime: DateTime.now(),
         theme: DatePickerTheme(
           itemStyle: TextStyle(
@@ -734,12 +592,11 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
         onConfirm: (date) {
           setState(() {
-            _finishDateSelected = true;
-            _selectedFilter.finishDate = date;
+            _filterData.finishDate = date;
             _checkIfCanContinue();
           });
         },
-        currentTime: _selectedFilter.finishDate,
+        currentTime: _filterData.finishDate,
         locale: LocaleType.pt,
       );
     }
