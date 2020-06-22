@@ -14,7 +14,7 @@ class SaleStatisticReport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log("SaleStatistic screen created by build method");
-
+    _checkLoginEligibility(context);
     var list = reportData.provideFormatedList();
 
     return ListView(
@@ -42,6 +42,10 @@ class SaleStatisticReport extends StatelessWidget {
         )
       ],
     );
+  }
+
+  _checkLoginEligibility(BuildContext context) async{
+    await Utils.checkifLoginIsValid(context);
   }
 
   Widget _buildReportListTile(ReportStoreInformation data) {
@@ -481,7 +485,7 @@ class SaleStatisticReport extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Valor médio por cliente:",
+                            "Valor do ticket médio:",
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,

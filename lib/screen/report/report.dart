@@ -201,7 +201,8 @@ class _ReportScreenState extends State<ReportScreen>
 
   List<Widget> _provideTabScreenList() {
     _tabScreenList.clear();
-    _tabScreenList.add(PeriodResumeReport(reportData: reportData));
+    _tabScreenList.add(PeriodResumeReport(
+        reportData: reportData, selectedFilter: _selectedFilter));
     _tabScreenList.add(SaleStatisticReport(reportData: reportData));
     _tabScreenList.add(SalePerDayReport(reportData: reportData));
     return _tabScreenList;
@@ -218,15 +219,27 @@ class _ReportScreenState extends State<ReportScreen>
                   DateFormat('dd/MM/yyyy').format(_selectedFilter.finishDate),
               lojas: _selectedFilter.convertStoreListToString()));
 
+      var now = DateTime.now();
+      var responseAnually = await ConnectionUtils.provideFechamentoCaixa(
+          FechamentoCaixaRequest(
+              database: _selectedFilter.database,
+              datainicial: DateFormat('dd/MM/yyyy')
+                  .format(DateTime(_selectedFilter.startDate.year, 1, 1)),
+              datafinal: DateFormat('dd/MM/yyyy').format(DateTime(
+                  _selectedFilter.finishDate.year, now.month, now.day)),
+              lojas: _selectedFilter.convertStoreListToString()));
+
       response.filterStartDate = _selectedFilter.startDate;
       response.filterEndDate = _selectedFilter.finishDate;
+      response.storeDatabase = _selectedFilter.database;
 
       var numberOfSelectedStores = 0;
-      for(var store in _selectedFilter.selectedStores){
-        if(store.isSelected) numberOfSelectedStores++;
+      for (var store in _selectedFilter.selectedStores) {
+        if (store.isSelected) numberOfSelectedStores++;
       }
 
       response.numberOfStoreSelected = numberOfSelectedStores;
+      response.resultAnually = responseAnually.result;
 
       var result = response.result[0][0];
       if (result.sucess == null || result.sucess != false) {
@@ -246,10 +259,12 @@ class _ReportScreenState extends State<ReportScreen>
       }
     } catch (_) {
       var reason = "Verifique sua internet e tente novamente.";
-      setState(() {
-        _dataLoaded = false;
-        _errorMessage = reason;
-      });
+      if (mounted) {
+        setState(() {
+          _dataLoaded = false;
+          _errorMessage = reason;
+        });
+      }
     }
 
     // //check api response

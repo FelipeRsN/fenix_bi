@@ -41,6 +41,10 @@ class _FilterScreenState extends State<FilterScreen> {
           backgroundColor: AppColors.colorPrimary,
           automaticallyImplyLeading: false,
           elevation: 0,
+          leading:
+              IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
+                _moveToReport();
+              }),
           title: Text(
             "Filtro",
             style: TextStyle(
@@ -508,8 +512,9 @@ class _FilterScreenState extends State<FilterScreen> {
         context: context,
         locale: Locale('pt', 'BR'),
         helpText: 'Data início',
-        fieldLabelText: 'Digite a data',
-        fieldHintText: 'dd/mm/aaaa',
+        fieldLabelText: 'Digite a data [mm/dd/aaaa]',
+        fieldHintText: 'mm/dd/aaaa',
+        errorFormatText: 'Formato inválido, utilize mm/dd/aaaa',
         initialDate: _filterData.startDate,
         firstDate: DateTime(2019),
         lastDate: DateTime.now(),
@@ -558,8 +563,9 @@ class _FilterScreenState extends State<FilterScreen> {
         context: context,
         locale: Locale('pt', 'BR'),
         helpText: 'Data fim',
-        fieldLabelText: 'Digite a data',
-        fieldHintText: 'dd/mm/aaaa',
+        fieldLabelText: 'Digite a data [mm/dd/aaaa]',
+        fieldHintText: 'mm/dd/aaaa',
+        errorFormatText: 'Formato inválido, utilize mm/dd/aaaa',
         initialDate: _filterData.finishDate,
         firstDate: _filterData.startDate,
         lastDate: DateTime.now(),

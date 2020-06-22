@@ -3,6 +3,10 @@ import 'dart:developer';
 
 import 'package:fenix_bi/data/model/reportStoreInformation.dart';
 import 'package:fenix_bi/data/model/sale_per_day.dart';
+import 'package:fenix_bi/data/model/sales_per_month.dart';
+import 'package:fenix_bi/utils/utils.dart';
+import 'package:intl/date_symbol_data_file.dart';
+import 'package:intl/intl.dart';
 
 FechamentoCaixaResponse fechamentoCaixaResponseFromJson(String str) =>
     FechamentoCaixaResponse.fromJson(json.decode(str));
@@ -12,9 +16,11 @@ String fechamentoCaixaResponseToJson(FechamentoCaixaResponse data) =>
 
 class FechamentoCaixaResponse {
   List<List<ReportStoreInformation>> result;
+  String storeDatabase;
   DateTime filterStartDate;
   DateTime filterEndDate;
   int numberOfStoreSelected;
+  List<List<ReportStoreInformation>> resultAnually;
 
   FechamentoCaixaResponse({
     this.result,
@@ -63,6 +69,22 @@ class FechamentoCaixaResponse {
     return totalLiquido;
   }
 
+  double provideTotalLiquidoAnual() {
+    var list = resultAnually[0];
+    var totalLiquido = 0.0;
+
+    for (var item in list) {
+      try {
+        var totDouble = double.parse(item.vLTotalGeral.replaceAll(",", "."));
+        totalLiquido = totalLiquido + totDouble;
+      } catch (error) {
+        log(error);
+      }
+    }
+
+    return totalLiquido;
+  }
+
   List<SalesPerDay> provideSalesPerDayList() {
     var list = result[0];
     var salesPerDayList = List<SalesPerDay>();
@@ -76,6 +98,8 @@ class FechamentoCaixaResponse {
         //create storeItem
         var storeItem = ReportStoreInformation();
         storeItem.nMFantasia = item.nMFantasia;
+        storeItem.cNpj = item.cNpj;
+        storeItem.dTAbertura = item.dTAbertura;
         storeItem.totGeral =
             double.parse(item.vLTotalGeral.replaceAll(",", "."));
         storeItem.totCartaoDebito =
@@ -129,7 +153,46 @@ class FechamentoCaixaResponse {
       }
     }
 
-    return salesPerDayList;
+    return salesPerDayList.reversed.toList();
+  }
+
+  List<SalesPerMonth> provideMonthList() {
+    var list = resultAnually[0];
+    var chartDataList = List<SalesPerMonth>();
+
+    var currentMonth = "";
+    var currentValue = 0.0;
+    var currentItem = SalesPerMonth();
+    for (var item in list) {
+      try {
+        String itemDate = item.dTAbertura;
+        var date = DateFormat('dd/MM/yyyy').parse(itemDate);
+        var month = Utils.capsWord(DateFormat.MMM('pt_BR').format(date));
+
+        if (month != currentMonth) {
+          if (currentMonth != "") {
+            currentItem.totalValue = currentValue;
+            chartDataList.add(currentItem);
+          }
+
+          currentItem = SalesPerMonth();
+          currentItem.monthName = month;
+          currentMonth = month;
+          currentValue = 0.0;
+        }
+
+        item.totGeral = double.parse(item.vLTotalGeral.replaceAll(",", "."));
+        currentValue = currentValue + item.totGeral;
+      } catch (error) {
+        log(error);
+      }
+    }
+
+    //add last item to list
+    currentItem.totalValue = currentValue;
+    chartDataList.add(currentItem);
+
+    return chartDataList;
   }
 
   List<ReportStoreInformation> provideChartList() {
@@ -183,7 +246,8 @@ class FechamentoCaixaResponse {
           currentItem.totCartaoCredito =
               provideCartaoCreditoByStore(item.nMFantasia);
           currentItem.totRepique = provideRepiqueByStore(item.nMFantasia);
-          currentItem.totalClients = provideTotalClientsByStore(item.nMFantasia);
+          currentItem.totalClients =
+              provideTotalClientsByStore(item.nMFantasia);
           currentItem.totTicketCancelation =
               provideCancelamentosByStore(item.nMFantasia);
           currentItem.totAveragePerClient =

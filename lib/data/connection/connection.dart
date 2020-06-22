@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fenix_bi/data/model/fechamentoCaixaDetalhadoResponse.dart';
 import 'package:fenix_bi/data/model/fechamentoCaixaRequest.dart';
 import 'package:fenix_bi/data/model/fechamentoCaixaResponse.dart';
 import 'package:fenix_bi/data/model/generic_response.dart';
@@ -31,5 +32,14 @@ class ConnectionUtils {
         body: fechamentoCaixaRequestToJson(data));
     log(json.decode(response.body).toString());
     return FechamentoCaixaResponse.fromJson(json.decode(response.body));
+  }
+
+  static Future<FechamentoCaixaDetalhadoResponse>
+      provideFechamentoCaixaDetalhado(FechamentoCaixaRequest data) async {
+    final response = await http.post('$BASE_URL/BuscarFechaDetCX',
+        body: fechamentoCaixaRequestToJson(data));
+    log(json.decode(response.body).toString());
+    return FechamentoCaixaDetalhadoResponse.fromJson(
+        json.decode(response.body));
   }
 }

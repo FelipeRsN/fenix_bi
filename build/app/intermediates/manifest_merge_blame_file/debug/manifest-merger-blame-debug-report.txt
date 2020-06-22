@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="br.com.newpointer.fenix.bi"
-4    android:versionCode="103"
-5    android:versionName="1.0.3" >
+4    android:versionCode="1010"
+5    android:versionName="1.0.10" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
@@ -91,7 +91,7 @@
 56            android:name="com.google.firebase.components.ComponentDiscoveryService"
 56-->[:firebase_core] /Users/felipersilveira/Projects/NewPointer/fenix_bi/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
 57            android:directBootAware="true"
-57-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+57-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
 58            android:exported="false" >
 58-->[com.google.android.gms:play-services-measurement-api:17.2.2] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/f83116d0690dd01225dbd5f211dc5390/play-services-measurement-api-17.2.2/AndroidManifest.xml:29:13-37
 59            <meta-data
@@ -198,15 +198,15 @@
 113        </receiver>
 114
 115        <provider
-115-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+115-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
 116            android:name="com.google.firebase.provider.FirebaseInitProvider"
-116-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+116-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
 117            android:authorities="br.com.newpointer.fenix.bi.firebaseinitprovider"
-117-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+117-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
 118            android:exported="false"
-118-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+118-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
 119            android:initOrder="100" />
-119-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/29627e80b8d16297d17a72e151ec3cf2/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+119-->[com.google.firebase:firebase-common:19.3.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5811ed6d8cd3fd5942be11b21c2268bb/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
 120
 121        <activity
 121-->[com.google.android.gms:play-services-base:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5b158abc2263076f387a9dedc11ef3a4/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
@@ -218,11 +218,11 @@
 124-->[com.google.android.gms:play-services-base:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/5b158abc2263076f387a9dedc11ef3a4/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
 125
 126        <meta-data
-126-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+126-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/6810323b271038651f48541cec5c99b6/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 127            android:name="com.google.android.gms.version"
-127-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+127-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/6810323b271038651f48541cec5c99b6/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
 128            android:value="@integer/google_play_services_version" />
-128-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/4308e3205865e95567f66e967c56c98a/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+128-->[com.google.android.gms:play-services-basement:17.0.0] /Users/felipersilveira/.gradle/caches/transforms-2/files-2.1/6810323b271038651f48541cec5c99b6/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
 129    </application>
 130
 131</manifest>

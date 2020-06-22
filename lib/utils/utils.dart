@@ -1,12 +1,16 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:fenix_bi/data/model/filterData.dart';
 import 'package:fenix_bi/data/model/selectedFilter.dart';
 import 'package:fenix_bi/data/model/store.dart';
 import 'package:fenix_bi/res/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:intl/intl.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,6 +23,21 @@ class Utils {
       systemNavigationBarColor: navigationBarColor, // navigation bar color
       statusBarColor: statusBarColor, // status bar color
     ));
+  }
+
+  static String convertDateTimeToString(DateTime dateTime) {
+    var dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    return dateFormat.format(dateTime);
+  }
+
+  static DateTime convertStringToDateTime(String value) {
+    var dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    return dateFormat.parse(value);
+  }
+
+  static DateTime convertPortugueseStringToDateTime(String value){
+   var dateFormat = DateFormat("dd/MM/aaaa");
+    return dateFormat.parse(value); 
   }
 
   static ProgressDialog provideProgressDialog(
@@ -118,16 +137,92 @@ class Utils {
     }
   }
 
-  // static Future<bool> getBiometricLoginDecision() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   var login = prefs.getString(SHARED_PREFERENCES_LAST_LOGIN_USED);
-  //   return login;
-  // }
-
   static String capsWord(String value) {
     return value.toLowerCase().split(' ').map((word) {
       String leftText = (word.length > 1) ? word.substring(1, word.length) : '';
       return word[0].toUpperCase() + leftText;
     }).join(' ');
+  }
+
+  static saveLoginDateTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var now = DateTime.now();
+
+    await prefs.remove(SHARED_PREFERENCES_LOGIN_DATETIME);
+    await prefs.setString(
+        SHARED_PREFERENCES_LOGIN_DATETIME, convertDateTimeToString(now));
+  }
+
+  static Future<bool> validateIfLoginIsValid() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var now = DateTime.now();
+    var lastLoginDateTime = prefs.getString(SHARED_PREFERENCES_LOGIN_DATETIME);
+    var lastLoginConvertedToDateTime =
+        convertStringToDateTime(lastLoginDateTime);
+    var difference = now.difference(lastLoginConvertedToDateTime).inMinutes;
+    log("Using app for: $difference minutes");
+    return difference < 10;
+  }
+
+  static checkifLoginIsValid(BuildContext context) async {
+    var canKeepLogin = await validateIfLoginIsValid();
+    if (!canKeepLogin) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () {
+              return Future.value(false);
+            },
+            child: Platform.isAndroid
+                ? AlertDialog(
+                    title: Text("Tempo de uso expirado"),
+                    content: Text(
+                        "Você excedeu o tempo desta sessão no aplicativo, por favor refaça login para continuar."),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(
+                            color: AppColors.colorPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {
+                          restartApp(context);
+                        },
+                      ),
+                    ],
+                  )
+                : CupertinoAlertDialog(
+                    title: Text("Tempo de uso expirado"),
+                    content: Text(
+                        "Você excedeu o tempo desta sessão no aplicativo, por favor refaça login para continuar."),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(
+                            color: AppColors.colorPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {
+                          restartApp(context);
+                        },
+                      ),
+                    ],
+                  ),
+          );
+        },
+      );
+    }
+  }
+
+  static restartApp(BuildContext context) async {
+    Phoenix.rebirth(context);
   }
 }

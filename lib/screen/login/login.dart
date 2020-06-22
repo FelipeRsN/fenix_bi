@@ -406,7 +406,7 @@ class _LoginScreenState extends State<LoginScreen>
                       action: SnackBarAction(
                           label: "Ligar",
                           onPressed: () {
-                            launch("tel://21213123123");
+                            launch("tel://1932320292");
                           }),
                     ),
                   );
@@ -480,13 +480,6 @@ class _LoginScreenState extends State<LoginScreen>
                 break;
               }
             }
-
-            _scaffoldKey.currentState.hideCurrentSnackBar();
-            _scaffoldKey.currentState.showSnackBar(
-              SnackBar(
-                content: Text("PIN: ${result.verificationPin}"),
-              ),
-            );
 
             //continue to step 2
             setState(() {
@@ -764,6 +757,8 @@ class _LoginScreenState extends State<LoginScreen>
     _selectedFilter.finishDate = DateTime.now();
     _selectedFilter.database = _filterData.connectedDatabase;
     _selectedFilter.connectedName = _filterData.connectedName;
+
+    await Utils.saveLoginDateTime();
 
     Navigator.pushReplacementNamed(context, AppRoutes.route_report,
         arguments: _selectedFilter);
