@@ -67,7 +67,7 @@ class SaleStatisticReport extends StatelessWidget {
                 Text(
                   Utils.capsWord(data.nMFantasia),
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
@@ -75,7 +75,7 @@ class SaleStatisticReport extends StatelessWidget {
                   NumberFormat.currency(locale: "pt_BR", symbol: "R\$")
                       .format(data.totGeral),
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Colors.black54,
                     fontWeight: FontWeight.bold,
                   ),

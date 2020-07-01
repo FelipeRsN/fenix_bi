@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.newpointer.fenix.bi"
     android:targetSandboxVersion="2"
-    android:versionCode="1010"
-    android:versionName="1.0.10" >
+    android:versionCode="1012"
+    android:versionName="1.0.12" >
 
     <uses-sdk
         android:minSdkVersion="16"

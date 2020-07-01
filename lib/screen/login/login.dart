@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen>
     return Container(
       margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
       width: 247,
-      height: 284,
+      height: 290,
       child: Card(
         color: Colors.white,
         elevation: 3,
@@ -349,7 +349,7 @@ class _LoginScreenState extends State<LoginScreen>
                         child: Text(
                           "Requisitar acesso",
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
                           if (_typedName.isEmpty || _typedPassword.isEmpty) {
@@ -395,7 +395,7 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             Container(
               width: double.infinity,
-              height: 16,
+              height: 25,
               child: FlatButton(
                 onPressed: () {
                   _scaffoldKey.currentState.hideCurrentSnackBar();
