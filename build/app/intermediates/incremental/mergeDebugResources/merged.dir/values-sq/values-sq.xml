@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Identifikohu me Google"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"Përdor fjalëkalimin"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"Gabim i panjohur"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Të ndryshme"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"Prek sensorin e gjurmës së gishtit"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"Hardueri i gjurmës së gishtit nuk mundësohet."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"Kjo pajisje nuk ka një sensor të gjurmës së gishtit"</string>

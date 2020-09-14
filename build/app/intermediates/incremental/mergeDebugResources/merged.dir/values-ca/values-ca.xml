@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Inicia la sessió amb Google"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"Utilitza la contrasenya"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"Error desconegut"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Altres"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"Toca sensor d\'empremtes digitals"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"El maquinari per a empremtes digitals no està disponible."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"Aquest dispositiu no té sensor d\'empremtes digitals"</string>

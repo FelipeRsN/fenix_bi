@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"പാസ്‌വേഡ് ഉപയോഗിക്കുക"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"അജ്ഞാത പിശക്"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"പലവക"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"വിരലടയാള സെൻസർ സ്‌പർശിക്കുക"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"ഫിംഗർപ്രിന്റ് ഹാർഡ്‌വെയർ ലഭ്യമല്ല."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"ഈ ഉപകരണത്തിൽ വിരലടയാള സെൻസർ ഇല്ല"</string>

@@ -658,6 +658,7 @@ drawable ic_fingerprint_white_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_logo
+drawable ic_notification
 drawable ic_priority_high_white_24dp
 drawable launch_background
 drawable notification_action_background
@@ -914,6 +915,7 @@ layout support_simple_spinner_dropdown_item
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
+mipmap ic_notification
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -963,6 +965,7 @@ string common_signin_button_text_long
 string confirm_device_credential_password
 string default_error_msg
 string default_web_client_id
+string fcm_fallback_notification_channel_label
 string fingerprint_dialog_touch_sensor
 string fingerprint_error_hw_not_available
 string fingerprint_error_hw_not_present

@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google এর মাধ্যমে সাইন-ইন করুন"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"পাসওয়ার্ড ব্যবহার করুন"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"অজানা সমস্যা"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"বিবিধ"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"আঙ্গুলের ছাপের সেন্সর টাচ করুন"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"আঙ্গুলের ছাপ নেওয়ার হার্ডওয়্যার উপলভ্য নয়।"</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"এই ডিভাইসে আঙ্গুলের ছাপ নেওয়ার সেন্সর নেই"</string>

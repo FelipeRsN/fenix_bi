@@ -807,9 +807,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(
-                                      locale: "pt_BR", symbol: "")
-                                  .format(data.totInfDin),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfDin),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextPositive,
@@ -819,9 +819,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(
-                                      locale: "pt_BR", symbol: "")
-                                  .format((data.totDin - data.totInfDin)),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format((data.totInfDin - data.totDin)),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -849,7 +849,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totCheque),
                       style: TextStyle(
                         fontSize: 12,
@@ -860,7 +861,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfChq),
                       style: TextStyle(
                         fontSize: 12,
@@ -871,8 +873,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totCheque - data.totInfChq),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfChq - data.totCheque),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -900,7 +903,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totCartao),
                       style: TextStyle(
                         fontSize: 12,
@@ -911,7 +915,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfCrt),
                       style: TextStyle(
                         fontSize: 12,
@@ -922,8 +927,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totCartao - data.totInfCrt),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfCrt - data.totCartao),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -951,7 +957,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totTicket),
                       style: TextStyle(
                         fontSize: 12,
@@ -962,7 +969,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfTkt),
                       style: TextStyle(
                         fontSize: 12,
@@ -973,8 +981,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totTicket - data.totInfTkt),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfTkt - data.totTicket),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -1002,7 +1011,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totContraVale),
                       style: TextStyle(
                         fontSize: 12,
@@ -1013,7 +1023,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfCtrVale),
                       style: TextStyle(
                         fontSize: 12,
@@ -1024,8 +1035,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totContraVale - data.totInfCtrVale),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfCtrVale - data.totContraVale),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -1053,7 +1065,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totConvenio),
                       style: TextStyle(
                         fontSize: 12,
@@ -1064,7 +1077,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfConv),
                       style: TextStyle(
                         fontSize: 12,
@@ -1075,8 +1089,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totConvenio - data.totInfConv),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfConv - data.totConvenio),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,
@@ -1109,7 +1124,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totGeral),
                       style: TextStyle(
                         fontSize: 12,
@@ -1120,7 +1136,8 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
                           .format(data.totInfGeral),
                       style: TextStyle(
                         fontSize: 12,
@@ -1131,8 +1148,9 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                 Container(
                   width: 77.0,
                   alignment: Alignment.centerRight,
-                  child: Text(NumberFormat.currency(locale: "pt_BR", symbol: "")
-                          .format(data.totGeral - data.totInfGeral),
+                  child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "")
+                          .format(data.totInfGeral - data.totGeral),
                       style: TextStyle(
                         fontSize: 12,
                         color: AppColors.colorTextNegative,

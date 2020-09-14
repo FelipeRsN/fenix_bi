@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google मार्फत साइन‍ इन गर्नुहोस्"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"पासवर्ड प्रयोग गर्नुहोस्"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"अज्ञात त्रुटि"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"विविध"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"फिंगरप्रिन्ट सेन्सरमा छुनुहोस्‌"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"फिंगरप्रिन्ट हार्डवेयर उपलब्ध छैन।"</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"यो यन्त्रमा कुनै फिंगरप्रिन्ट सेन्सर छैन"</string>

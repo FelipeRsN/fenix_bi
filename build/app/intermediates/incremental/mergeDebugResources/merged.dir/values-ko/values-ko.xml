@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google 계정으로 로그인"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"비밀번호 사용"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"알 수 없는 오류"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"기타"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"지문 센서를 터치하세요."</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"지문 인식 하드웨어를 사용할 수 없습니다."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"기기에 지문 센서가 없습니다."</string>

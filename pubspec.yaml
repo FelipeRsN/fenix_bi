@@ -38,6 +38,7 @@ dependencies:
   firebase_analytics: ^5.0.16
   local_auth: ^0.6.2+3
   firebase_messaging: ^6.0.16
+  flutter_phoenix: ^0.1.0
   get:
 
 dev_dependencies:

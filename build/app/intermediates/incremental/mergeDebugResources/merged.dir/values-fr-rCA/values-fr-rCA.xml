@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Se connecter avec Google"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"Utiliser le mot de passe"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"Erreur inconnue"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Divers"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"Touch. capteur empr. digitales"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"Le matériel de lecture d\'empreintes digitales n\'est pas accessible."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"Cet appareil ne possède pas de capteur d\'empreintes digitales"</string>

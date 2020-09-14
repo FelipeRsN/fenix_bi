@@ -35,9 +35,9 @@ class Utils {
     return dateFormat.parse(value);
   }
 
-  static DateTime convertPortugueseStringToDateTime(String value){
-   var dateFormat = DateFormat("dd/MM/aaaa");
-    return dateFormat.parse(value); 
+  static DateTime convertPortugueseStringToDateTime(String value) {
+    var dateFormat = DateFormat("dd/MM/aaaa");
+    return dateFormat.parse(value);
   }
 
   static ProgressDialog provideProgressDialog(

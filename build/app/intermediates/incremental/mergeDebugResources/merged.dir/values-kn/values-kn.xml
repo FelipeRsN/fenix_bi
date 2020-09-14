@@ -48,6 +48,7 @@
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google ಮೂಲಕ ಸೈನ್ ಇನ್ ಮಾಡಿ"</string>
     <string msgid="4296851028928624518" name="confirm_device_credential_password">"ಪಾಸ್‌ವರ್ಡ್ ಬಳಸಿ"</string>
     <string msgid="7497355367608150274" name="default_error_msg">"ಅಪರಿಚಿತ ದೋಷ"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"ಇತರೆ"</string>
     <string msgid="5354590751262189738" name="fingerprint_dialog_touch_sensor">"ಫಿಂಗರ್‌ಪ್ರಿಂಟ್ ಸೆನ್ಸರ್‌‌ ಅನ್ನು ಸ್ಪರ್ಶಿಸಿ"</string>
     <string msgid="3976825677335166260" name="fingerprint_error_hw_not_available">"ಫಿಂಗರ್‌ ಫ್ರಿಂಟ್‌ ಹಾರ್ಡ್‌ವೇರ್‌ ಲಭ್ಯವಿಲ್ಲ."</string>
     <string msgid="1176237289575184578" name="fingerprint_error_hw_not_present">"ಈ ಸಾಧನವು ಫಿಂಗರ್‌ಪ್ರಿಂಟ್‌ ಸೆನ್ಸಾರ್ ಅನ್ನು ಹೊಂದಿಲ್ಲ"</string>
