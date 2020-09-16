@@ -27,7 +27,7 @@ class SalePerDayReport extends StatelessWidget {
             "Exibe um comparativo do total vendido nas lojas selecionadas por dia",
             style: TextStyle(
               color: Colors.black54,
-              fontSize: 14,
+              fontSize: 12,
             ),
           ),
         ),
@@ -74,7 +74,8 @@ class SalePerDayReport extends StatelessWidget {
             shrinkWrap: true,
             physics: ScrollPhysics(),
             itemBuilder: (context, index) {
-              return _buildReportListTile(data.storeList[index], data.currentDay);
+              return _buildReportListTile(
+                  data.storeList[index], data.currentDay);
             },
           ),
         ],

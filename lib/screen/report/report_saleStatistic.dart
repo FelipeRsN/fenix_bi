@@ -25,7 +25,7 @@ class SaleStatisticReport extends StatelessWidget {
             "Exibe o detalhe de vendas das lojas selecionadas com base no período escolhido.",
             style: TextStyle(
               color: Colors.black54,
-              fontSize: 14,
+              fontSize: 12,
             ),
           ),
         ),
@@ -44,7 +44,7 @@ class SaleStatisticReport extends StatelessWidget {
     );
   }
 
-  _checkLoginEligibility(BuildContext context) async{
+  _checkLoginEligibility(BuildContext context) async {
     await Utils.checkifLoginIsValid(context);
   }
 
@@ -110,7 +110,7 @@ class SaleStatisticReport extends StatelessWidget {
                                     locale: "pt_BR", symbol: "R\$")
                                 .format(data.totGeral),
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: AppColors.colorTextPositive,
                               fontWeight: FontWeight.bold,
                             ),

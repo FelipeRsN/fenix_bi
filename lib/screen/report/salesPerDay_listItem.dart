@@ -100,7 +100,7 @@ class _SalesPerDayListItemState extends State<SalesPerDayListItem>
                                       locale: "pt_BR", symbol: "R\$")
                                   .format(widget.data.totGeral),
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: AppColors.colorTextPositive,
                                 fontWeight: FontWeight.bold,
                               ),

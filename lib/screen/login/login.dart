@@ -174,8 +174,8 @@ class _LoginScreenState extends State<LoginScreen>
   Widget _buildLoginStepsContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-      width: 247,
-      height: 290,
+      width: 270,
+      height: 310,
       child: Card(
         color: Colors.white,
         elevation: 3,
@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen>
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12.0),
           child: _startAnimationAndDetectStep(),
         ),
       ),
@@ -221,12 +221,12 @@ class _LoginScreenState extends State<LoginScreen>
           children: <Widget>[
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(bottom: 10),
+              margin: EdgeInsets.only(bottom: 8),
               child: Text(
                 "Bem vindo ao Fenix BI",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
@@ -234,10 +234,10 @@ class _LoginScreenState extends State<LoginScreen>
             Text(
               "Para ter acesso ao sistema, efetue login com o usuário e senha informados pela empresa",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: Colors.black),
+              style: TextStyle(fontSize: 11, color: Colors.black),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8, bottom: 4),
+              margin: EdgeInsets.only(top: 8),
               width: double.infinity,
               height: 36,
               child: TextFormField(
@@ -280,7 +280,6 @@ class _LoginScreenState extends State<LoginScreen>
             Container(
               height: 36,
               width: double.infinity,
-              margin: EdgeInsets.only(top: 4, bottom: 4),
               child: TextFormField(
                 onChanged: (value) {
                   _typedPassword = value;
@@ -326,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 12, bottom: 14),
+              margin: EdgeInsets.only(top: 8, bottom: 8),
               height: 36,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -579,13 +578,12 @@ class _LoginScreenState extends State<LoginScreen>
             child: Text(
               "Digite o código enviado para seu e-mail de cadastro:\n$_pinSentTo",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: Colors.black),
+              style: TextStyle(fontSize: 11, color: Colors.black),
             ),
           ),
           Container(
             height: 36,
             width: double.infinity,
-            margin: EdgeInsets.only(top: 24),
             child: TextField(
               style: TextStyle(
                   fontSize: 12,
@@ -613,7 +611,6 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(top: 32, bottom: 14),
             height: 36,
             child: RaisedButton(
               textColor: Colors.white,
@@ -635,6 +632,7 @@ class _LoginScreenState extends State<LoginScreen>
           Container(
             width: double.infinity,
             height: 16,
+            margin: EdgeInsets.only(bottom: 12),
             child: FlatButton(
               onPressed: () {
                 _scaffoldKey.currentState.hideCurrentSnackBar();

@@ -1,15 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:fenix_bi/data/model/filterData.dart';
-import 'package:fenix_bi/data/model/selectedFilter.dart';
-import 'package:fenix_bi/data/model/store.dart';
 import 'package:fenix_bi/res/colors.dart';
+import 'package:fenix_bi/utils/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:intl/intl.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -192,7 +189,8 @@ class Utils {
                           ),
                         ),
                         onPressed: () {
-                          restartApp(context);
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.route_login);
                         },
                       ),
                     ],
@@ -211,7 +209,8 @@ class Utils {
                           ),
                         ),
                         onPressed: () {
-                          restartApp(context);
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.route_login);
                         },
                       ),
                     ],
@@ -220,9 +219,5 @@ class Utils {
         },
       );
     }
-  }
-
-  static restartApp(BuildContext context) async {
-    Phoenix.rebirth(context);
   }
 }

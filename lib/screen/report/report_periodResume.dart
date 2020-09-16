@@ -32,7 +32,7 @@ class PeriodResumeReport extends StatelessWidget {
             "Exibe o resumo das lojas selecionadas com base no período escolhido.",
             style: TextStyle(
               color: Colors.black54,
-              fontSize: 14,
+              fontSize: 12,
             ),
           ),
         ),
@@ -76,7 +76,7 @@ class PeriodResumeReport extends StatelessWidget {
                       Text(
                         "De.: ${DateFormat('dd/MM/yyyy').format(reportData.filterStartDate)}",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
@@ -86,7 +86,7 @@ class PeriodResumeReport extends StatelessWidget {
                             ? "1 loja selecionada"
                             : "${reportData.numberOfStoreSelected} lojas selecionadas",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
@@ -103,7 +103,7 @@ class PeriodResumeReport extends StatelessWidget {
                       Text(
                         "Até: ${DateFormat('dd/MM/yyyy').format(reportData.filterEndDate)}",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
@@ -111,7 +111,7 @@ class PeriodResumeReport extends StatelessWidget {
                       Text(
                         "${reportData.provideNumberOfStores()} lojas com resultado",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
@@ -143,7 +143,7 @@ class PeriodResumeReport extends StatelessWidget {
                         NumberFormat.currency(locale: "pt_BR", symbol: "R\$")
                             .format(reportData.provideTotalLiquido()),
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: AppColors.colorTextPositive,
                           fontWeight: FontWeight.bold,
                         ),
@@ -190,7 +190,7 @@ class PeriodResumeReport extends StatelessWidget {
             title: Text(
               "Comparativo resumo do período",
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
@@ -246,7 +246,7 @@ class PeriodResumeReport extends StatelessWidget {
             title: Text(
               "Comparativo de venda mensal",
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
@@ -272,7 +272,7 @@ class PeriodResumeReport extends StatelessWidget {
                           NumberFormat.currency(locale: "pt_BR", symbol: "R\$")
                               .format(reportData.provideTotalLiquidoAnual()),
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.colorTextPositive,
                             fontWeight: FontWeight.bold,
                           ),

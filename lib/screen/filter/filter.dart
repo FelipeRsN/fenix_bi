@@ -7,7 +7,6 @@ import 'package:fenix_bi/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -41,186 +40,25 @@ class _FilterScreenState extends State<FilterScreen> {
           backgroundColor: AppColors.colorPrimary,
           automaticallyImplyLeading: false,
           elevation: 0,
-          leading:
-              IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              onPressed: () {
                 _moveToReport();
               }),
           title: Text(
             "Filtro",
             style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          actions: <Widget>[
-            InkWell(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Platform.isAndroid
-                        ? AlertDialog(
-                            title: Text("Tem certeza que deseja sair?"),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12))),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text(
-                                  "CANCELAR",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              FlatButton(
-                                child: Text(
-                                  "SAIR",
-                                  style: TextStyle(
-                                    color: AppColors.colorPrimary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  _clearStorageAndRestartApp();
-                                },
-                              ),
-                            ],
-                          )
-                        : CupertinoAlertDialog(
-                            title: Text("Tem certeza que deseja sair?"),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text(
-                                  "CANCELAR",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              FlatButton(
-                                child: Text(
-                                  "SAIR",
-                                  style: TextStyle(
-                                    color: AppColors.colorPrimary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                onPressed: () {
-                                  _clearStorageAndRestartApp();
-                                },
-                              ),
-                            ],
-                          );
-                  },
-                );
-              },
-              child: SizedBox(
-                height: double.infinity,
-                width: 80,
-                child: Container(
-                  padding: EdgeInsets.only(right: 24),
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Sair',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
         body: _buildScreenBody(),
       ),
     );
   }
 
-  _clearStorageAndRestartApp() async {
-    Phoenix.rebirth(context);
-  }
-
   Widget _buildScreenBody() {
     return Column(
       children: <Widget>[
-        // Container(
-        //   margin: EdgeInsets.only(left: 16, right: 16, top: 24),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: <Widget>[
-        //       Text(
-        //         'Tipo:',
-        //         style: TextStyle(
-        //             fontSize: 16,
-        //             fontWeight: FontWeight.bold,
-        //             color: Colors.white),
-        //       ),
-        //       Container(
-        //         width: 80,
-        //         height: 30,
-        //         margin: EdgeInsets.only(left: 16),
-        //         child: RaisedButton(
-        //           onPressed: () {
-        //             setState(() {
-        //               _selectedFilter.filterType = FilterType.MONTHLY;
-        //             });
-        //           },
-        //           shape: RoundedRectangleBorder(
-        //             borderRadius: new BorderRadius.circular(8.0),
-        //           ),
-        //           child: Text(
-        //             'Mensal',
-        //             style: TextStyle(
-        //                 fontSize: 14,
-        //                 fontWeight: FontWeight.w500,
-        //                 color: _selectedFilter.filterType == FilterType.MONTHLY
-        //                     ? AppColors.colorPrimary
-        //                     : Colors.white),
-        //           ),
-        //           color: _selectedFilter.filterType == FilterType.MONTHLY
-        //               ? Colors.white
-        //               : AppColors.colorPrimary,
-        //           elevation: 0,
-        //         ),
-        //       ),
-        //       Container(
-        //         width: 80,
-        //         height: 30,
-        //         margin: EdgeInsets.only(left: 8),
-        //         child: RaisedButton(
-        //           onPressed: () {
-        //             setState(() {
-        //               _selectedFilter.filterType = FilterType.ANUALY;
-        //             });
-        //           },
-        //           shape: RoundedRectangleBorder(
-        //               borderRadius: new BorderRadius.circular(8.0)),
-        //           child: Text(
-        //             'Anual',
-        //             style: TextStyle(
-        //                 fontSize: 14,
-        //                 fontWeight: FontWeight.w500,
-        //                 color: _selectedFilter.filterType == FilterType.ANUALY
-        //                     ? AppColors.colorPrimary
-        //                     : Colors.white),
-        //           ),
-        //           color: _selectedFilter.filterType == FilterType.ANUALY
-        //               ? Colors.white
-        //               : AppColors.colorPrimary,
-        //           elevation: 0,
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
         Container(
           width: double.infinity,
           margin: EdgeInsets.only(left: 16, right: 16, top: 16),

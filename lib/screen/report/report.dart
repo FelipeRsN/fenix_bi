@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fenix_bi/data/connection/connection.dart';
 import 'package:fenix_bi/data/model/fechamentoCaixaRequest.dart';
 import 'package:fenix_bi/data/model/fechamentoCaixaResponse.dart';
@@ -7,6 +9,7 @@ import 'package:fenix_bi/screen/report/report_periodResume.dart';
 import 'package:fenix_bi/screen/report/report_salePerDay.dart';
 import 'package:fenix_bi/screen/report/report_saleStatistic.dart';
 import 'package:fenix_bi/utils/routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -93,7 +96,7 @@ class _ReportScreenState extends State<ReportScreen>
       title: Text(
         "Relatórios",
         style: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       actions: <Widget>[
         InkWell(
@@ -116,6 +119,93 @@ class _ReportScreenState extends State<ReportScreen>
             ),
           ),
         ),
+        InkWell(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Platform.isAndroid
+                    ? AlertDialog(
+                        title: Text("Tem certeza que deseja sair?"),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text(
+                              "CANCELAR",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text(
+                              "SAIR",
+                              style: TextStyle(
+                                color: AppColors.colorPrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoutes.route_login);
+                            },
+                          ),
+                        ],
+                      )
+                    : CupertinoAlertDialog(
+                        title: Text("Tem certeza que deseja sair?"),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text(
+                              "CANCELAR",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text(
+                              "SAIR",
+                              style: TextStyle(
+                                color: AppColors.colorPrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoutes.route_login);
+                            },
+                          ),
+                        ],
+                      );
+              },
+            );
+          },
+          child: SizedBox(
+            height: double.infinity,
+            child: Container(
+              padding: EdgeInsets.only(right: 12, left: 12),
+              alignment: Alignment.centerRight,
+              child: Text(
+                'Sair',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+        ),
       ],
       bottom: _dataLoaded
           ? PreferredSize(
@@ -129,7 +219,7 @@ class _ReportScreenState extends State<ReportScreen>
                       TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   unselectedLabelColor: Colors.white,
                   unselectedLabelStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                      TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
                   indicatorSize: TabBarIndicatorSize.label,
                   isScrollable: true,
                   indicatorWeight: 0,
