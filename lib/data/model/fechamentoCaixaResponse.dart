@@ -259,6 +259,8 @@ class FechamentoCaixaResponse {
       }
     }
 
+    chartDataList.sort((a, b) => a.nMFantasia.compareTo(b.nMFantasia));
+
     return chartDataList;
   }
 

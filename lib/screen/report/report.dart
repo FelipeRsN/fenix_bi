@@ -255,7 +255,7 @@ class _ReportScreenState extends State<ReportScreen>
               : Container(),
           _errorMessage.isNotEmpty
               ? Text(
-                  "Problema ao carregar os relatórios",
+                  "Resultado vazio",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

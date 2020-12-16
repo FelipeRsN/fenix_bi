@@ -132,7 +132,7 @@ class PeriodResumeReport extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Total líquido no período",
+                        "Total líquido",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,

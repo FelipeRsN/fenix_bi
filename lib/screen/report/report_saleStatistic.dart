@@ -61,26 +61,35 @@ class SaleStatisticReport extends StatelessWidget {
               unselectedWidgetColor: Colors.black, accentColor: Colors.black),
           child: ExpansionTile(
             initiallyExpanded: false,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  Utils.capsWord(data.nMFantasia),
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                Text(
-                  NumberFormat.currency(locale: "pt_BR", symbol: "R\$")
-                      .format(data.totGeral),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.bold,
+            title: Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      Utils.capsWord(data.nMFantasia),
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      NumberFormat.currency(locale: "pt_BR", symbol: "R\$")
+                          .format(data.totGeral),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             children: <Widget>[
               Container(

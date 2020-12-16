@@ -8,6 +8,7 @@ import 'package:fenix_bi/data/model/selectedFilter.dart';
 import 'package:fenix_bi/res/colors.dart';
 import 'package:fenix_bi/utils/routes.dart';
 import 'package:fenix_bi/utils/utils.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,10 +43,12 @@ class _LoginScreenState extends State<LoginScreen>
   final _focusPassword = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final LocalAuthentication _localAuthentication = LocalAuthentication();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   var _typedName = "";
   var _typedPassword = "";
   var _typedPin = "";
+  var _pushToken = "";
 
   //connection
   ProgressDialog pr;
@@ -69,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen>
     _retrieveCurrentVersion();
     _checkLastLoginTyped();
     _retrieveBiometricConfiguration();
+    _setupNotification();
   }
 
   void _initAnimation() {
@@ -85,6 +89,21 @@ class _LoginScreenState extends State<LoginScreen>
     );
     _step2fadeInFadeOut =
         Tween<double>(begin: 0.0, end: 1.0).animate(_step2Animation);
+  }
+
+  void _setupNotification() {
+    _firebaseMessaging.requestNotificationPermissions(
+        IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      setState(() {
+        _pushToken = token;
+      });
+    });
   }
 
   @override
@@ -174,8 +193,8 @@ class _LoginScreenState extends State<LoginScreen>
   Widget _buildLoginStepsContainer() {
     return Container(
       margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-      width: 270,
-      height: 310,
+      width: double.infinity,
+      height: 330,
       child: Card(
         color: Colors.white,
         elevation: 3,
@@ -193,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget _buildLogoContainer() {
     return Padding(
       padding: const EdgeInsets.all(24.0),
-      child: SizedBox(width: 180, height: 180, child: _logo),
+      child: SizedBox(width: 160, height: 160, child: _logo),
     );
   }
 
@@ -221,7 +240,6 @@ class _LoginScreenState extends State<LoginScreen>
           children: <Widget>[
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(bottom: 8),
               child: Text(
                 "Bem vindo ao Fenix BI",
                 textAlign: TextAlign.center,
@@ -232,12 +250,11 @@ class _LoginScreenState extends State<LoginScreen>
               ),
             ),
             Text(
-              "Para ter acesso ao sistema, efetue login com o usuário e senha informados pela empresa",
+              "Efetue login com o usuário e senha informados pela empresa",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 11, color: Colors.black),
             ),
             Container(
-              margin: EdgeInsets.only(top: 8),
               width: double.infinity,
               height: 36,
               child: TextFormField(
@@ -325,7 +342,6 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(top: 8, bottom: 8),
               height: 36,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -346,7 +362,7 @@ class _LoginScreenState extends State<LoginScreen>
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
-                          "Requisitar acesso",
+                          "Acessar",
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.bold),
                         ),
@@ -445,10 +461,15 @@ class _LoginScreenState extends State<LoginScreen>
       //start dialog
       await pr.show();
 
-      var response = await ConnectionUtils.loginAccount(LoginRequest(
-        usuario: _typedName.toUpperCase().trim(),
-        senha: _typedPassword,
-      ));
+      print("token: $_pushToken");
+
+      var response = await ConnectionUtils.loginAccount(
+        LoginRequest(
+          usuario: _typedName.toUpperCase().trim(),
+          senha: _typedPassword,
+          token: _pushToken,
+        ),
+      );
 
       //check api response
       if (response.result != null && response.result.isNotEmpty) {
