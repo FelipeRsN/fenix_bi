@@ -10,17 +10,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ConnectionUtils {
-  static const BASE_URL = "http://3.21.163.77:211/datasnap/rest/TSM";
+  static const BASE_URL = "http://fenixbi.dyndns.org:211/datasnap/rest/TSM";
 
   static Future<LoginResponse> loginAccount(LoginRequest data) async {
     final response =
-        await http.post('$BASE_URL/LoginBI', body: loginRequestToJson(data));
+        await http.post(Uri.parse('$BASE_URL/LoginBI'), body: loginRequestToJson(data));
     log(json.decode(response.body).toString());
     return LoginResponse.fromJson(json.decode(response.body));
   }
 
   static Future<GenericResponse> validatePinCode(LoginRequest data) async {
-    final response = await http.post('$BASE_URL/ValidaLoginBI',
+    final response = await http.post(Uri.parse('$BASE_URL/ValidaLoginBI'),
         body: loginRequestToJson(data));
     log(json.decode(response.body).toString());
     return GenericResponse.fromJson(json.decode(response.body));
@@ -28,7 +28,7 @@ class ConnectionUtils {
 
   static Future<FechamentoCaixaResponse> provideFechamentoCaixa(
       FechamentoCaixaRequest data) async {
-    final response = await http.post('$BASE_URL/BuscarFechaCX',
+    final response = await http.post(Uri.parse('$BASE_URL/BuscarFechaCX'),
         body: fechamentoCaixaRequestToJson(data));
     log(json.decode(response.body).toString());
     return FechamentoCaixaResponse.fromJson(json.decode(response.body));
@@ -36,7 +36,7 @@ class ConnectionUtils {
 
   static Future<FechamentoCaixaDetalhadoResponse>
       provideFechamentoCaixaDetalhado(FechamentoCaixaRequest data) async {
-    final response = await http.post('$BASE_URL/BuscarFechaDetCX',
+    final response = await http.post(Uri.parse('$BASE_URL/BuscarFechaDetCX'),
         body: fechamentoCaixaRequestToJson(data));
     log(json.decode(response.body).toString());
     return FechamentoCaixaDetalhadoResponse.fromJson(

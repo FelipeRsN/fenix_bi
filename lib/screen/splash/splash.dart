@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:fenix_bi/res/colors.dart';
 import 'package:fenix_bi/utils/routes.dart';
 import 'package:fenix_bi/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,6 +16,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    Firebase.initializeApp();
     super.initState();
     _executeAfterBuild();
   }

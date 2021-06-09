@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen>
   final _focusPassword = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final LocalAuthentication _localAuthentication = LocalAuthentication();
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   var _typedName = "";
   var _typedPassword = "";
@@ -92,12 +92,7 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   void _setupNotification() {
-    _firebaseMessaging.requestNotificationPermissions(
-        IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
-    });
+    _firebaseMessaging.requestPermission();
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);
       setState(() {
